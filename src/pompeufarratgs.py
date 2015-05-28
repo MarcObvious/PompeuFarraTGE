@@ -22,17 +22,19 @@ font = pygame.font.Font(None, 36)
 textin = eztext.Input(x=textboxX, y=textboxY, maxlength=100, color=(negre), prompt='Escriu: ')
 
 #funcio que processa la resposta
-def generaResposta():
-    resposta = "Al pou"
+def generaResposta(textin):
+#     resposta = "Al pou"
+    resposta = textin.value
+    
     return resposta
 
 #funcio que mostra per pantalla el mapa (quan estem apretant TAB)
 def pintaMapa():
-    screen.fill(negre)
+    screen.fill(vermell)
 
 #funcio que mostra per pantalla el que veu el protagonista
 def pintaEntorn():
-    screen.fill(vermell)
+    screen.fill(negre)
 
 #funcio per saber quina tecla es prem
 def keyPressed(inputKey):
@@ -57,7 +59,7 @@ def main():
         textin.update(events)
         textin.draw(screen)
         if (keyPressed(K_RETURN)):#apretem enter per generar resposta
-            textout = font.render(generaResposta(), 1, (blau))
+            textout = font.render(generaResposta(textin), 1, (blau))
             screen.blit(textout,(width*0.04,height*0.825))
         pygame.display.update()
 

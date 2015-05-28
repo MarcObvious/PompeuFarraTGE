@@ -47,10 +47,10 @@ class Input:
     def update(self, events):
         """ Update the input based on passed events """
         for event in events:
-            if event.type == KEYUP:
-                if event.key == K_LSHIFT or event.key == K_RSHIFT: self.shifted = False
-            if event.type == KEYDOWN:
-                if event.key == K_BACKSPACE: self.value = self.value[:-1]
+            if event.type == KEYUP:  # @UndefinedVariable
+                if event.key == K_LSHIFT or event.key == K_RSHIFT: self.shifted = False  # @UndefinedVariable
+            if event.type == KEYDOWN:  # @UndefinedVariable
+                if event.key == K_BACKSPACE: self.value = self.value[:-1]  # @UndefinedVariable
                 elif event.key == K_LSHIFT or event.key == K_RSHIFT: self.shifted = True
                 elif event.key == K_SPACE: self.value += ' '
                 if not self.shifted:
