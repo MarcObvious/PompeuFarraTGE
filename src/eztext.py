@@ -51,25 +51,25 @@ class Input:
                 if event.key == K_LSHIFT or event.key == K_RSHIFT: self.shifted = False  # @UndefinedVariable
             if event.type == KEYDOWN:  # @UndefinedVariable
                 if event.key == K_BACKSPACE: self.value = self.value[:-1]  # @UndefinedVariable
-                elif event.key == K_LSHIFT or event.key == K_RSHIFT: self.shifted = True
-                elif event.key == K_SPACE: self.value += ' '
+                elif event.key == K_LSHIFT or event.key == K_RSHIFT: self.shifted = True  # @UndefinedVariable
+                elif event.key == K_SPACE: self.value += ' '  # @UndefinedVariable
                 if not self.shifted:
-                    if event.key == K_a and 'a' in self.restricted: self.value += 'a'
-                    elif event.key == K_b and 'b' in self.restricted: self.value += 'b'
-                    elif event.key == K_c and 'c' in self.restricted: self.value += 'c'
-                    elif event.key == K_d and 'd' in self.restricted: self.value += 'd'
-                    elif event.key == K_e and 'e' in self.restricted: self.value += 'e'
-                    elif event.key == K_f and 'f' in self.restricted: self.value += 'f'
-                    elif event.key == K_g and 'g' in self.restricted: self.value += 'g'
-                    elif event.key == K_h and 'h' in self.restricted: self.value += 'h'
-                    elif event.key == K_i and 'i' in self.restricted: self.value += 'i'
-                    elif event.key == K_j and 'j' in self.restricted: self.value += 'j'
-                    elif event.key == K_k and 'k' in self.restricted: self.value += 'k'
-                    elif event.key == K_l and 'l' in self.restricted: self.value += 'l'
-                    elif event.key == K_m and 'm' in self.restricted: self.value += 'm'
-                    elif event.key == K_n and 'n' in self.restricted: self.value += 'n'
-                    elif event.key == K_o and 'o' in self.restricted: self.value += 'o'
-                    elif event.key == K_p and 'p' in self.restricted: self.value += 'p'
+                    if event.key == K_a and 'a' in self.restricted: self.value += 'a'  # @UndefinedVariable
+                    elif event.key == K_b and 'b' in self.restricted: self.value += 'b'  # @UndefinedVariable
+                    elif event.key == K_c and 'c' in self.restricted: self.value += 'c'  # @UndefinedVariable
+                    elif event.key == K_d and 'd' in self.restricted: self.value += 'd'  # @UndefinedVariable
+                    elif event.key == K_e and 'e' in self.restricted: self.value += 'e'  # @UndefinedVariable
+                    elif event.key == K_f and 'f' in self.restricted: self.value += 'f'  # @UndefinedVariable
+                    elif event.key == K_g and 'g' in self.restricted: self.value += 'g'  # @UndefinedVariable
+                    elif event.key == K_h and 'h' in self.restricted: self.value += 'h'  # @UndefinedVariable
+                    elif event.key == K_i and 'i' in self.restricted: self.value += 'i'  # @UndefinedVariable
+                    elif event.key == K_j and 'j' in self.restricted: self.value += 'j'  # @UndefinedVariable
+                    elif event.key == K_k and 'k' in self.restricted: self.value += 'k'  # @UndefinedVariable
+                    elif event.key == K_l and 'l' in self.restricted: self.value += 'l'  # @UndefinedVariable
+                    elif event.key == K_m and 'm' in self.restricted: self.value += 'm'  # @UndefinedVariable
+                    elif event.key == K_n and 'n' in self.restricted: self.value += 'n'  # @UndefinedVariable
+                    elif event.key == K_o and 'o' in self.restricted: self.value += 'o'  # @UndefinedVariable
+                    elif event.key == K_p and 'p' in self.restricted: self.value += 'p'  # @UndefinedVariable
                     elif event.key == K_q and 'q' in self.restricted: self.value += 'q'
                     elif event.key == K_r and 'r' in self.restricted: self.value += 'r'
                     elif event.key == K_s and 's' in self.restricted: self.value += 's'

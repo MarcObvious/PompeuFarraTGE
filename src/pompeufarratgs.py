@@ -15,7 +15,7 @@ verd = (0,255,0)
 negre = (0,0,0)
 
 #inicialitzacio de la pantalla, titol del joc i input de text
-pygame.init()
+pygame.init()  # @UndefinedVariable
 screen = pygame.display.set_mode((width,height))
 pygame.display.set_caption('PompeuFarra: The Great Scape')
 font = pygame.font.Font(None, 36)
@@ -49,18 +49,19 @@ def main():
         events = pygame.event.get()
         for event in events:
             #aixi tanquem apretant la creu
-            if event.type == pygame.QUIT:
-                pygame.quit()
+            if event.type == pygame.QUIT:  # @UndefinedVariable
+                pygame.quit()  # @UndefinedVariable
                 quit()
-        if (keyPressed(K_TAB)): #mentre apretem tab mostra el mapa
+        if (keyPressed(K_TAB)): #mentre apretem tab mostra el mapa @UndefinedVariable
             pintaMapa()
         else: pintaEntorn()
         pygame.draw.rect(screen,blanc,(0,height*0.79,width,height-height*0.79))
         textin.update(events)
         textin.draw(screen)
-        if (keyPressed(K_RETURN)):#apretem enter per generar resposta
+        if (keyPressed(K_RETURN)):#apretem enter per generar resposta @UndefinedVariable
             textout = font.render(generaResposta(textin), 1, (blau))
             screen.blit(textout,(width*0.04,height*0.825))
+            textin.value = ""
         pygame.display.update()
 
 if __name__ == '__main__': main()
