@@ -2,6 +2,12 @@ import nltk;
 #from nltk.corpus import treebank
 import sys;
 
+def sortida(tokens):
+    if ('surtJA' in tokens): 
+        print ("Good bye")
+        exit()
+
+
 def main():
     print("Write something:")  
     for line in sys.stdin:
@@ -10,5 +16,8 @@ def main():
         print(tokens)
         tagged = nltk.pos_tag(tokens)
         print (tagged[0:len(tagged)])
+        sortida(tokens)
+        
+
 if __name__ == "__main__":
     main()
