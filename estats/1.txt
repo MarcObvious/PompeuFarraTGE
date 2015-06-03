@@ -1,0 +1,9 @@
+Okay, Light has just come. What the.. This is a bathroom. Furthermore, this is University Pompeu Fabra! WTF. The walls are covered by some posters... open door. There are four doors, you should be far more precise. No offense.
+open right door|Why do you want to return there? You have to get out of here! Do not go back there, move on! Explore!|1
+open left door||3
+open center door||2
+open exit door||4
+exit bathroom||4
+check walls|This awful colours look rudimentary, I am having a rough time to read those titles.. I think it says party Pompeu Farra. OH.THAT IS IT. I ATTEND IT. And I would say I had loooots of fun...|1
+check posters|This awful colours look rudimentary, I am having a rough time to read those titles.. I think it says party Pompeu Farra.|1
+You are idiot|FYI, I am not at my best state so you should not get hard on me.|1
