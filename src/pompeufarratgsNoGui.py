@@ -10,7 +10,7 @@ class State():
     
     def getResposta(self, input):
         if input in self.data.keys():
-            print ("AHA", self.data[input])
+#             print ("AHA", self.data[input])
             return self.data[input]
         return 0,0
     
@@ -24,7 +24,7 @@ class State():
 def resposta(tokens, estat):
     resposta = -1
     estatSeguent = -1
-    print("ara intentarem trobar resposta")
+#     print("ara intentarem trobar resposta")
     #for token in tokens.split():
     resposta, estatSeguent = estat.getResposta(tokens[:-1])
     
@@ -38,7 +38,7 @@ def carregaestatsProva(estats):
     print("Carrega inicial feta") 
     
 def carregaEstats(estats, raw_estat):
-    print("Llegint estats de veritat")
+    print("Llegint estat", raw_estat)
     estat1 = open( "../estats/"+raw_estat+".txt", "r" ) 
     
     num_estat = raw_estat
@@ -78,9 +78,11 @@ def main():
     estats = []
 #     carregaestatsProva(estats)
     carregaEstats(estats, '0')
-    
     carregaEstats(estats, '1')
-    
+    carregaEstats(estats, '2')
+    carregaEstats(estats, '3')
+    carregaEstats(estats, '4')
+    carregaEstats(estats, '5')
     #print(estats[0].getResposta('frase1'))
 #     print (estats)
 #     print("Write something:")  
@@ -96,7 +98,8 @@ def main():
         sortida(tokens)
          
         resp, estatAct = resposta(line,estats[estatAct])
-        print ("RESPOSTA: ",resp, " ESTAT ACTUAL: " ,estatAct)
+        print ("RESPOSTA: ",resp)
+        print ("ESTAT ACTUAL: " ,estatAct)
 #         resp, est = resposta(line,estats[1])
         print (estats[int(estatAct)].getFraseInicial())
 
