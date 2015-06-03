@@ -7,7 +7,6 @@ def sortida(tokens):
         print ("Good bye")
         exit()
 
-
 def main():
     print("Write something:")  
     for line in sys.stdin:
@@ -17,6 +16,7 @@ def main():
         tagged = nltk.pos_tag(tokens)
         print (tagged[0:len(tagged)])
         sortida(tokens)
+        print("What are you talking about? Try again")
         
 
 if __name__ == "__main__":
