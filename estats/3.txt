@@ -1,0 +1,7 @@
+What a dirty WC! There are lots of things scattered at the floor.
+search|It seems there is a key, it has written Aula1. Better to keep it.|3
+explore|Hmmm... a key, it has written Aula1. Got it.|3
+exit||1
+go back||1
+return to bathroom||1
+go to bathroom||1
