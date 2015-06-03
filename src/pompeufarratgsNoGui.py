@@ -94,7 +94,7 @@ def main():
         tokens = nltk.word_tokenize(line)
 #         print(tokens)
         tagged = nltk.pos_tag(tokens)
-#         print (tagged[0:len(tagged)])
+        print (tagged[0:len(tagged)])
         sortida(tokens)
          
         resp, estatAct = resposta(line,estats[estatAct])
