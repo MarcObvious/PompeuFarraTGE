@@ -19,12 +19,15 @@ def resposta(tokens, estat):
     resposta = 'merda'
     estatSeguent = 0
     print("ara intentarem trobar resposta")
+    for token in tokens.split():
+        resposta = estat.getResposta(token)
+    
     return resposta, estatSeguent
 
 def carregaestats(estats):
-    s =  State(0,{'frase1':'resposta1', 'frase2':'resposta2'})
+    s =  State(0,{'frase1':'resposta u', 'frase2':'resposta 2'})
     estats.append(s)
-    s2 =  State(1,{'frase3':'resposta3', 'frase4':'resposta4'})
+    s2 =  State(1,{'frase3':'resposta 3', 'frase4':'resposta 4'})
     estats.append(s2)
     print("Carrega inicial feta") 
     
@@ -36,7 +39,6 @@ def sortida(tokens):
 def draw():
     print()
 
-
 #     loop
 def run(self):
     print()
@@ -45,6 +47,7 @@ def run(self):
 def main():
     estats = []
     carregaestats(estats)
+    #print(estats[0].getResposta('frase1'))
 #     print (estats)
     print("Write something:")  
     for line in sys.stdin:
@@ -54,8 +57,10 @@ def main():
         tagged = nltk.pos_tag(tokens)
         print (tagged[0:len(tagged)])
         sortida(tokens)
-        print (estats[0].getResposta(tokens))
-        print("What are you talking about? Try again")
-
+        
+        resp, est = resposta(line,estats[0])
+        print (resp)
+        resp, est = resposta(line,estats[1])
+        print (resp)
 if __name__ == "__main__":
     main()
