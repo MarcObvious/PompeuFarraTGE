@@ -1,6 +1,7 @@
 import nltk;
 #from nltk.corpus import treebank
 import sys;
+import random;
 
 class State():
     def __init__(self, posicio, frase, data):
@@ -71,14 +72,72 @@ def generaRespostaNLTK(typedline):
     tagged = nltk.pos_tag(tokens)
     i = 0
     tags = []
+    VBi = NNi = VBGi = NNSi = 0
+    VB = NN = VBG = NNS = "none"
     while i < len(tagged):
         tags.append(tagged[i][1])
+        if tagged[i][1] == "VB" or tagged[i][1] == "VBP":
+            VB = tagged[i][0]
+            VBi = i
+        if tagged[i][1] == "VBG":
+            VBG = tagged[i][0]
+            VBGi = i
+        if tagged[i][1] == "NN":
+            NN = tagged[i][0]
+            NNi = i;
+        if tagged[i][1] == "NNS":
+            NNS = tagged[i][0]
+            NNSi = i
         i += 1
-    return(tags)
+    print(VB+NN+VBG+NNS)
+    if len(tagged) < 7 and VB != "none" and NN != "none" and VBG == "none" and NNS == "none":
+        NLTKanswer = "do you think that "+VB+"ing a "+NN+" is a good idea right now?"
+        return(NLTKanswer)
+    elif len(tagged) < 7 and VB != "none" and NN == "none" and VBG == "none" and NNS != "none":
+        NLTKanswer = "do you think that "+VB+"ing some "+NNS+" is a good idea right now?"
+        return(NLTKanswer)
+    elif len(tagged) < 7 and VB == "none" and NN != "none" and VBG != "none" and NNS == "none":
+        NLTKanswer = "why are you "+VBG+" a "+NN+"? I think you have more important things to do"
+        return(NLTKanswer)
+    elif len(tagged) < 7 and VB == "none" and NN == "none" and VBG != "none" and NNS != "none":
+        NLTKanswer = "why are you "+VBG+" some "+NNS+"? I think you have more important things to do"
+        return(NLTKanswer)
+    elif len(tagged) < 7 and VB == "am" and NN == "none" and VBG != "none" and NNS != "none":
+        NLTKanswer = "why are you "+VBG+" some "+NNS+"? I think you have more important things to do"
+        return(NLTKanswer)
+    elif len(tagged) < 7 and VB == "am" and NN != "none" and VBG != "none" and NNS == "none":
+        NLTKanswer = "why are you "+VBG+" a "+NN+"? I think you have more important things to do"
+        return(NLTKanswer)
+    return(NPIanswer())
     
+def NPIanswer():
+    aux = random.randint(1,10)
+    if aux == 1:
+        NPIanswer = "I don't know what are you talking about"
+    elif aux == 2:
+        NPIanswer = "this doesn't make sense at all"
+    elif aux == 3:
+        NPIanswer = "I wish you could articulate a normal sentence"
+    elif aux == 4:
+        NPIanswer = "I don't get the point of that"
+    elif aux == 5:
+        NPIanswer = "could you try to say something with common sense?"
+    elif aux == 6:
+        NPIanswer = "stop talking without thinking what you are saying"
+    elif aux == 7:
+        NPIanswer = "come on... tell some useful things, do you wanna be here forever?"
+    elif aux == 8:
+        NPIanswer = "booohhh, please say something that can be understood by human people"
+    elif aux == 9:
+        NPIanswer = "lalalalala I am not getting anything, please try to communicate yourself better..."
+    elif aux == 10:
+        NPIanswer = "I think you should improve your grammar so people can read the nosenses you are typing"
+    return NPIanswer
+
 def sortida(tokens):
     if ('surtJA' in tokens): 
         print ("Good bye")
+        
         exit()
 
 def draw():
