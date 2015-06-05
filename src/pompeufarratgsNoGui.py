@@ -60,6 +60,21 @@ def carregaEstats(estats, raw_estat):
     s = State(int(num_estat),frase_inicial,diccionari)
     
     estats.append(s)
+
+def generaRespostaNLTK(typedline):
+    extra = open( "../estats/extra.txt","r")
+    for line in extra:
+        separat = line.split('|')
+        if typedline == separat[0]+"\n":
+            return separat[1]
+    tokens = nltk.word_tokenize(typedline)
+    tagged = nltk.pos_tag(tokens)
+    i = 0
+    tags = []
+    while i < len(tagged):
+        tags.append(tagged[i][1])
+        i += 1
+    return(tags)
     
 def sortida(tokens):
     if ('surtJA' in tokens): 
@@ -98,7 +113,10 @@ def main():
         sortida(tokens)
          
         resp, estatAct = resposta(line,estats[estatAct])
-        print ("RESPOSTA: ",resp)
+        if (resp == 0):
+            print ("RESPOSTA: ",(generaRespostaNLTK(line)))
+        else:
+            print ("RESPOSTA: ",resp)
         print ("ESTAT ACTUAL: " ,estatAct)
 #         resp, est = resposta(line,estats[1])
         print (estats[int(estatAct)].getFraseInicial())
