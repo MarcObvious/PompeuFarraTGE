@@ -2,10 +2,12 @@ from pygame.locals import *
 import pygame, sys, eztext
 
 #mides pantalla i requadre de text
-width = 1300
-height = 900
+width = 800
+height = 500
 textboxX = width*0.01
 textboxY = height*0.8
+
+x = False
 
 #colors
 blanc = (255,255,255)
@@ -17,7 +19,7 @@ negre = (0,0,0)
 #inicialitzacio de la pantalla, titol del joc i input de text
 pygame.init()  # @UndefinedVariable
 screen = pygame.display.set_mode((width,height))
-pygame.display.set_caption('PompeuFarra: The Great Scape')
+pygame.display.set_caption('PompeuFarra: The Great Escape')
 font = pygame.font.Font(None, 36)
 textin = eztext.Input(x=textboxX, y=textboxY, maxlength=100, color=(negre), prompt='Escriu: ')
 
@@ -52,9 +54,12 @@ def main():
             if event.type == pygame.QUIT:  # @UndefinedVariable
                 pygame.quit()  # @UndefinedVariable
                 quit()
-        if (keyPressed(K_TAB)): #mentre apretem tab mostra el mapa @UndefinedVariable
-            pintaMapa()
-        else: pintaEntorn()
+        if (keyPressed(K_TAB)):
+            x = True
+        else:
+            x = False
+        if x: pintaEntorn()
+        if not x: pintaMapa()
         pygame.draw.rect(screen,blanc,(0,height*0.79,width,height-height*0.79))
         textin.update(events)
         textin.draw(screen)

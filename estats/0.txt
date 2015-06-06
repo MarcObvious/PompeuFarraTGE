@@ -1,0 +1,12 @@
+Oh... Where am I.. This is a dark room. I am totally naked. I am lying on the floor, covered by some slimy substance. And this smell.. What the hell has happened here. Oh my, why am I holding a big-sized pink bra on my hands. I wish I could remember something.
+palpate wall|It seems this is tiny! And there is a door too|0
+search|I do not know what to search for.|0
+explore|It looks like a tiny space. And there is a door too!|0
+go forward|Oh my god! This is extremely small, I just had my head hit.|0
+move|Move where? Some concission might be welcome...|0
+walk|Where to walk? ... You are so laconic I can say.|0
+run away|I do not know where to run man. Stop this now.|0
+get up|I am happy enough, thank you.|0
+stand up|Oh, this hangover.. I can barely stay up on my feet.|0
+smell bra|Man you are a pervert. F*ck off.|0
+switch light on|Okay, you are a clever one indeed. Done. I'll get out of here too.|1
