@@ -116,29 +116,7 @@ def carregaNPI():
         npi_answers.append(line[:-1])
     return npi_answers
 def NPIanswer():
-    print (npi_answers)
-    i = random.randint(1,len(npi_answers))
-#     if aux == 1:
-#         NPIanswer = "I don't know what are you talking about"
-#     elif aux == 2:
-#         NPIanswer = "this doesn't make sense at all"
-#     elif aux == 3:
-#         NPIanswer = "I wish you could articulate a normal sentence"
-#     elif aux == 4:
-#         NPIanswer = "I don't get the point of that"
-#     elif aux == 5:
-#         NPIanswer = "could you try to say something with common sense?"
-#     elif aux == 6:
-#         NPIanswer = "stop talking without thinking what you are saying"
-#     elif aux == 7:
-#         NPIanswer = "come on... tell some useful things, do you wanna be here forever?"
-#     elif aux == 8:
-#         NPIanswer = "booohhh, please say something that can be understood by human people"
-#     elif aux == 9:
-#         NPIanswer = "lalalalala I am not getting anything, please try to communicate yourself better..."
-#     elif aux == 10:
-#         NPIanswer = "I think you should improve your grammar so people can read the nosenses you are typing"
-    return npi_answers[i]
+    return npi_answers[random.randint(1,len(npi_answers)-1)]
 
 def sortida(tokens):
     if ('surtJA' in tokens): 
