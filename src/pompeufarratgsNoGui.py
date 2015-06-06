@@ -72,8 +72,8 @@ def generaRespostaNLTK(typedline):
     tagged = nltk.pos_tag(tokens)
     i = 0
     tags = []
-    VBi = NNi = VBGi = NNSi = 0
-    VB = NN = VBG = NNS = "none"
+    VBi = NNi = VBGi = NNSi = WRBi = 0
+    VB = NN = VBG = NNS = WRB = "none"
     while i < len(tagged):
         tags.append(tagged[i][1])
         if tagged[i][1] == "VB" or tagged[i][1] == "VBP":
@@ -88,25 +88,37 @@ def generaRespostaNLTK(typedline):
         if tagged[i][1] == "NNS":
             NNS = tagged[i][0]
             NNSi = i
+        if tagged[i][1] == "WRB":
+            WRB = tagged[i][0]
+            WRBi = i
         i += 1
     print(VB+NN+VBG+NNS)
-    if len(tagged) < 7 and VB != "none" and NN != "none" and VBG == "none" and NNS == "none":
+    if len(tagged) < 7 and VB != "none" and NN != "none" and VBG == "none" and NNS == "none" and WRB == "none":
         NLTKanswer = "do you think that "+VB+"ing a "+NN+" is a good idea right now?"
         return(NLTKanswer)
-    elif len(tagged) < 7 and VB != "none" and NN == "none" and VBG == "none" and NNS != "none":
+    elif len(tagged) < 7 and VB != "none" and NN == "none" and VBG == "none" and NNS != "none" and WRB == "none":
         NLTKanswer = "do you think that "+VB+"ing some "+NNS+" is a good idea right now?"
         return(NLTKanswer)
-    elif len(tagged) < 7 and VB == "none" and NN != "none" and VBG != "none" and NNS == "none":
+    elif len(tagged) < 7 and VB == "none" and NN != "none" and VBG != "none" and NNS == "none" and WRB == "none":
         NLTKanswer = "why are you "+VBG+" a "+NN+"? I think you have more important things to do"
         return(NLTKanswer)
-    elif len(tagged) < 7 and VB == "none" and NN == "none" and VBG != "none" and NNS != "none":
+    elif len(tagged) < 7 and VB == "none" and NN == "none" and VBG != "none" and NNS != "none" and WRB == "none":
         NLTKanswer = "why are you "+VBG+" some "+NNS+"? I think you have more important things to do"
         return(NLTKanswer)
-    elif len(tagged) < 7 and VB == "am" and NN == "none" and VBG != "none" and NNS != "none":
+    elif len(tagged) < 7 and VB == "am" and NN == "none" and VBG != "none" and NNS != "none" and WRB == "none":
         NLTKanswer = "why are you "+VBG+" some "+NNS+"? I think you have more important things to do"
         return(NLTKanswer)
-    elif len(tagged) < 7 and VB == "am" and NN != "none" and VBG != "none" and NNS == "none":
+    elif len(tagged) < 7 and VB == "am" and NN != "none" and VBG != "none" and NNS == "none" and WRB == "none":
         NLTKanswer = "why are you "+VBG+" a "+NN+"? I think you have more important things to do"
+        return(NLTKanswer)
+    elif len(tagged) < 10 and (WRB == "where" or WRB == "Where") and tokens[len(tagged)-1] == "?" and tags[len(tagged)-2] == "NNS":
+        NLTKanswer = "I don't know "+WRB.lower()+" you could find "+tokens[len(tagged)-2]+" over here"
+        return(NLTKanswer)
+    elif len(tagged) < 10 and (WRB == "where" or WRB == "Where") and tokens[len(tagged)-1] == "?" and tags[len(tagged)-2] == "NN":
+        NLTKanswer = "I don't know "+WRB.lower()+" you could find a "+tokens[len(tagged)-2]+" over here"
+        return(NLTKanswer)
+    elif len(tagged) < 10 and (WRB == "when" or WRB == "When") and tokens[len(tagged)-1] == "?":
+        NLTKanswer = "I don't know "+typedline.lower()[:-2]+", God knows"
         return(NLTKanswer)
     return(NPIanswer())
     
