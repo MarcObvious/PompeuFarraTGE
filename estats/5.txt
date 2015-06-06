@@ -1,9 +1,0 @@
-This class was not opened during last night. Everything is clean and ordered. Perhaps at the professor's desktop I will find the entrance key.
-exit||4
-go back||4
-return to corridor||4
-go to corridor||4
-open desktop|So many USB, pens and stuff... Also a key! But not of the Entrance, it is from Secretary. It's something.|5 
-search in desktop|School stuff... Flash memories and some devices. Lots of pens and sheets. Wait... there is a key under the sheets! It says "Secretary".|5 
-look inside the desktop|Lots of papers, pens, USB... Hmmm an small key too, from Secretary. Let's go there.|5 
-explore desktop|It seems there is only university material... Wow! I nearly miss that key, it is from Secretary not from Entrance. Better than nothing.|5 
