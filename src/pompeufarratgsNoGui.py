@@ -33,7 +33,7 @@ def resposta(tokens, estat):
     
     return resposta, estatSeguent
 
-    
+#Carreguem tots els estats que hi hagi a la carpeta estat    
 def carregaEstats():
     for fitxer in listdir("../estats/"): 
         print("Llegint estat", fitxer)
@@ -41,7 +41,6 @@ def carregaEstats():
         
         num_estat = int(fitxer[:-4])
         frase_inicial = ""
-    #     print (num_estat)
         diccionari = {}
         
         primer = True
@@ -54,8 +53,9 @@ def carregaEstats():
                 diccionari[separat[0]] = (separat[1],int(separat[2][:-1]))
     
         s = State(int(num_estat),frase_inicial,diccionari)
-        print(s.getFraseInicial())
         estats.append(s)
+    
+    #Com que llegim directament de la carpeta, els estats s'han dordenar
     estats.sort(key=lambda State: State.posicio,reverse=False)
 
 def generaRespostaNLTK(typedline):
@@ -106,48 +106,41 @@ def generaRespostaNLTK(typedline):
         return(NLTKanswer)
     return(NPIanswer())
     
+#Carrega les respostes NPI
 def carregaNPI():
     extra = open( "../RespostesEstandar/NPI","r")
     for line in extra:
         npi_answers.append(line[:-1])
-#     return npi_answers
+
+#Torna una resposta random NPI
 def NPIanswer():
     return npi_answers[random.randint(1,len(npi_answers)-1)]
 
 def sortida(tokens):
     if ('surtJA' in tokens): 
         print ("Good bye")
-        
         exit()
 
+#No implementat
 def draw():
     print()
 
-#     loop
+#No implementat,  loop
 def run(self):
     print()
     
+#VAriables globals
 estats = []
 npi_answers = []
+
 #A main hem de definir tots els estats on podem anar i carregar els valors inicials
 def main():
-    
-
     carregaNPI()   
     carregaEstats()
-    print (len(estats))
-    print (estats[1].getResposta('check posters'))
-#     carregaEstats(estats, '1')
-#     carregaEstats(estats, '2')
-#     carregaEstats(estats, '3')
-#     carregaEstats(estats, '4')
-#     carregaEstats(estats, '5')
-#     print(estats[0].getResposta('frase1'))
-#     print (estats)
-#     print("Write something:")  
+    print ("#Estats",len(estats))
+    
     estatAct = 0
     print (estats[estatAct].getFraseInicial())
-    print ("puta")
     for line in sys.stdin:
        
         print("has esrit:", line)
