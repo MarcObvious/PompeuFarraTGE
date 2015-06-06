@@ -2,6 +2,8 @@ import nltk;
 #from nltk.corpus import treebank
 import sys;
 import random;
+from nltk.stem import *
+from nltk.stem.wordnet import WordNetLemmatizer
 from os import listdir
 
 class State():
@@ -157,7 +159,10 @@ def main():
        
         print("has esrit:", line)
         tokens = nltk.word_tokenize(line)
-#         print(tokens)
+        lmtzr = WordNetLemmatizer()
+        print (lmtzr.lemmatize('cars'))
+#         print(stem(tokens[0]))
+#         stem("hola")
         tagged = nltk.pos_tag(tokens)
         print ("Interpretacio Nltk", tagged[0:len(tagged)])
         sortida(tokens)
