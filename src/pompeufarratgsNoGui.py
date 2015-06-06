@@ -10,6 +10,9 @@ class State():
         self.posicio = posicio
         self.data = data
     
+    def __repr__(self):
+        return repr((self.frase, self.posicio, self.data))
+    
     def getResposta(self, entrada):
         if entrada in self.data.keys():
 #             print ("AHA", self.data[input])
@@ -36,7 +39,7 @@ def carregaEstats():
         print("Llegint estat", fitxer)
         estat1 = open("../estats/"+fitxer, "r" ) 
         
-        num_estat = fitxer[:-4]
+        num_estat = int(fitxer[:-4])
         frase_inicial = ""
     #     print (num_estat)
         diccionari = {}
@@ -44,15 +47,16 @@ def carregaEstats():
         primer = True
         for line in estat1:
             if (primer):
-                frase_inicial = line
+                frase_inicial = line[:-1]
                 primer = False
             else:
                 separat = line.split('|')
                 diccionari[separat[0]] = (separat[1],int(separat[2][:-1]))
     
         s = State(int(num_estat),frase_inicial,diccionari)
-        
+        print(s.getFraseInicial())
         estats.append(s)
+    estats.sort(key=lambda State: State.posicio,reverse=False)
 
 def generaRespostaNLTK(typedline):
     extra = open( "../extra/extra.txt","r")
@@ -106,7 +110,7 @@ def carregaNPI():
     extra = open( "../RespostesEstandar/NPI","r")
     for line in extra:
         npi_answers.append(line[:-1])
-    return npi_answers
+#     return npi_answers
 def NPIanswer():
     return npi_answers[random.randint(1,len(npi_answers)-1)]
 
@@ -128,21 +132,22 @@ npi_answers = []
 #A main hem de definir tots els estats on podem anar i carregar els valors inicials
 def main():
     
-#     estats = []
-    npi_answers = carregaNPI()
-   
-#     carregaestatsProva(estats)
+
+    carregaNPI()   
     carregaEstats()
+    print (len(estats))
+    print (estats[1].getResposta('check posters'))
 #     carregaEstats(estats, '1')
 #     carregaEstats(estats, '2')
 #     carregaEstats(estats, '3')
 #     carregaEstats(estats, '4')
 #     carregaEstats(estats, '5')
-    #print(estats[0].getResposta('frase1'))
+#     print(estats[0].getResposta('frase1'))
 #     print (estats)
 #     print("Write something:")  
     estatAct = 0
     print (estats[estatAct].getFraseInicial())
+    print ("puta")
     for line in sys.stdin:
        
         print("has esrit:", line)
