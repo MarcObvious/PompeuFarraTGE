@@ -31,7 +31,7 @@ class State():
 def resposta(tokens, estat):
 #     print("ara intentarem trobar resposta")
     #for token in tokens.split():
-    resposta, estatSeguent = estat.getResposta(tokens[:-1])
+    resposta, estatSeguent = estat.getResposta(tokens)
     
     return resposta, estatSeguent
 
@@ -143,6 +143,21 @@ def draw():
 def run(self):
     print()
     
+def lemmatize(entrada):
+    lmtzr = WordNetLemmatizer()
+    sortida = []
+    for paraula in entrada:
+        aux1 = lmtzr.lemmatize(paraula, 'v')
+        aux2 = lmtzr.lemmatize(paraula)
+        if (aux1 != paraula):
+            sortida.append(aux1)
+        elif (aux2 != paraula):
+            sortida.append(aux2)
+        else:
+            sortida.append(paraula)
+    return sortida
+
+
 #VAriables globals
 estats = []
 npi_answers = []
@@ -155,26 +170,34 @@ def main():
     
     estatAct = 0
     print (estats[estatAct].getFraseInicial())
+    print ("Say something:")
     for line in sys.stdin:
        
         print("has esrit:", line)
         tokens = nltk.word_tokenize(line)
-        lmtzr = WordNetLemmatizer()
-        print (lmtzr.lemmatize('cars'))
-#         print(stem(tokens[0]))
-#         stem("hola")
+
         tagged = nltk.pos_tag(tokens)
-        print ("Interpretacio Nltk", tagged[0:len(tagged)])
+        print ("NLTK", tagged[0:len(tagged)])
         sortida(tokens)
-         
-        resp, estatAct = resposta(line,estats[estatAct])
+        
+        lemma = lemmatize(tokens)
+        print ("LEMMA", lemma)
+        l = ""
+        for word in lemma:
+            l += word+" "
+        l = l[:-1]
+        
+        resp, estatAct = resposta(l,estats[estatAct])
         if (resp == 0):
             print ("RESPOSTA: ",(generaRespostaNLTK(line)))
         else:
             print ("RESPOSTA: ",resp)
         print ("ESTAT ACTUAL: " ,estatAct)
 #         resp, est = resposta(line,estats[1])
+        
         print (estats[int(estatAct)].getFraseInicial())
+        
+        print ("Say something:")
 
 if __name__ == "__main__":
     main()
