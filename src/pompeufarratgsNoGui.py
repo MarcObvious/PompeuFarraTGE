@@ -9,10 +9,10 @@ class State():
         self.posicio = posicio
         self.data = data
     
-    def getResposta(self, input):
-        if input in self.data.keys():
+    def getResposta(self, entrada):
+        if entrada in self.data.keys():
 #             print ("AHA", self.data[input])
-            return self.data[input]
+            return self.data[entrada]
         return 0,0
     
     def getFraseInicial(self):
@@ -31,12 +31,12 @@ def resposta(tokens, estat):
     
     return resposta, estatSeguent
 
-def carregaestatsProva(estats):
-    s =  State(0,'Soplapenes',{'frase1':['resposta u',1], 'frase2':['resposta 2',2]})
-    estats.append(s)
-    s2 =  State(1,'fresca',{'frase3':['resposta 3',2], 'frase4':['resposta 4',3]})
-    estats.append(s2)
-    print("Carrega inicial feta") 
+# def carregaestatsProva(estats):
+#     s =  State(0,'Soplapenes',{'frase1':['resposta u',1], 'frase2':['resposta 2',2]})
+#     estats.append(s)
+#     s2 =  State(1,'fresca',{'frase3':['resposta 3',2], 'frase4':['resposta 4',3]})
+#     estats.append(s2)
+#     print("Carrega inicial feta") 
     
 def carregaEstats(estats, raw_estat):
     print("Llegint estat", raw_estat)
@@ -110,29 +110,35 @@ def generaRespostaNLTK(typedline):
         return(NLTKanswer)
     return(NPIanswer())
     
+def carregaNPI():
+    extra = open( "../RespostesEstandar/NPI","r")
+    for line in extra:
+        npi_answers.append(line[:-1])
+    return npi_answers
 def NPIanswer():
-    aux = random.randint(1,10)
-    if aux == 1:
-        NPIanswer = "I don't know what are you talking about"
-    elif aux == 2:
-        NPIanswer = "this doesn't make sense at all"
-    elif aux == 3:
-        NPIanswer = "I wish you could articulate a normal sentence"
-    elif aux == 4:
-        NPIanswer = "I don't get the point of that"
-    elif aux == 5:
-        NPIanswer = "could you try to say something with common sense?"
-    elif aux == 6:
-        NPIanswer = "stop talking without thinking what you are saying"
-    elif aux == 7:
-        NPIanswer = "come on... tell some useful things, do you wanna be here forever?"
-    elif aux == 8:
-        NPIanswer = "booohhh, please say something that can be understood by human people"
-    elif aux == 9:
-        NPIanswer = "lalalalala I am not getting anything, please try to communicate yourself better..."
-    elif aux == 10:
-        NPIanswer = "I think you should improve your grammar so people can read the nosenses you are typing"
-    return NPIanswer
+    print (npi_answers)
+    i = random.randint(1,len(npi_answers))
+#     if aux == 1:
+#         NPIanswer = "I don't know what are you talking about"
+#     elif aux == 2:
+#         NPIanswer = "this doesn't make sense at all"
+#     elif aux == 3:
+#         NPIanswer = "I wish you could articulate a normal sentence"
+#     elif aux == 4:
+#         NPIanswer = "I don't get the point of that"
+#     elif aux == 5:
+#         NPIanswer = "could you try to say something with common sense?"
+#     elif aux == 6:
+#         NPIanswer = "stop talking without thinking what you are saying"
+#     elif aux == 7:
+#         NPIanswer = "come on... tell some useful things, do you wanna be here forever?"
+#     elif aux == 8:
+#         NPIanswer = "booohhh, please say something that can be understood by human people"
+#     elif aux == 9:
+#         NPIanswer = "lalalalala I am not getting anything, please try to communicate yourself better..."
+#     elif aux == 10:
+#         NPIanswer = "I think you should improve your grammar so people can read the nosenses you are typing"
+    return npi_answers[i]
 
 def sortida(tokens):
     if ('surtJA' in tokens): 
@@ -147,9 +153,14 @@ def draw():
 def run(self):
     print()
     
+estats = []
+npi_answers = []
 #A main hem de definir tots els estats on podem anar i carregar els valors inicials
 def main():
-    estats = []
+    
+#     estats = []
+    npi_answers = carregaNPI()
+   
 #     carregaestatsProva(estats)
     carregaEstats(estats, '0')
     carregaEstats(estats, '1')
