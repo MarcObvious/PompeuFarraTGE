@@ -5,7 +5,7 @@ import random;
 from nltk.stem import *
 from nltk.stem.wordnet import WordNetLemmatizer
 from os import listdir
-import pyglet
+#import pyglet
 
 class State():
     def __init__(self, posicio, frase, data):
@@ -165,14 +165,12 @@ npi_answers = []
 
 #A main hem de definir tots els estats on podem anar i carregar els valors inicials
 def main():
-    #song = pyglet.media.load('../songs/GameMusic.mp3')
-    try:
-        song = pyglet.media.load("../songs/GameMusic.mp3", streaming=False)
-        song.play()
-    except pyglet.media.MediaException:
-        print("no tira")
-        
-    #pyglet.app.run()
+#     try:
+#         song = pyglet.media.load("../songs/GameMusic.mp3", streaming=False)
+#         song.play()
+#         pyglet.app.run()
+#     except pyglet.media.MediaException:
+#         print("fuck, notira")
 
     carregaNPI()   
     carregaEstats()
