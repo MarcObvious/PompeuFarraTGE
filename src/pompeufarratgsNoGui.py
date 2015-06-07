@@ -124,7 +124,7 @@ def generaRespostaNLTK(typedline):
                 tokens[j] = "you"
             elif tokens[j] == "you":
                 tokens[j] = "I"
-            whenanswer = whenanswer+" "+tokens[j]
+            whenanswer = whenanswer+" "+tokens[j].lower()
             j += 1
         NLTKanswer = "I don't know "+whenanswer[:-2]+", God knows"
         return(NLTKanswer)
