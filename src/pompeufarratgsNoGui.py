@@ -150,8 +150,8 @@ def generaRespostaNLTK(typedline):
         NLTKanswer = "I don't know "+whenanswer[:-2]+", God knows"
     
     if (NLTKanswer != ""):
-        return NLTKanswer
-    return(NPIanswer())
+        return NLTKanswer+"\n I'm having fun talking with you, but you gotta give orders in order to get out of here."
+    return NPIanswer()
     
 #Carrega les respostes NPI
 def carregaNPI():
