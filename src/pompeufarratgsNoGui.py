@@ -3,6 +3,7 @@ import nltk;
 #from nltk.corpus import treebank
 import sys;
 import random;
+import itertools
 from nltk.stem import *
 from nltk.stem.wordnet import WordNetLemmatizer
 from os import listdir
@@ -13,7 +14,7 @@ import pygame, eztext, threading
 
 #mides pantalla
 width = 800
-height = 500
+height = 500    
 
 
 #colors
@@ -108,6 +109,7 @@ def generaRespostaNLTK(typedline):
         separat = line.split('|')
         if typedline == separat[0]+"\n":
             return separat[1]
+        
     tokens = nltk.word_tokenize(typedline)
     tagged = nltk.pos_tag(tokens)
     i = 0
@@ -180,7 +182,6 @@ def sortida(tokens):
     if ('surtJA' in tokens): 
         print ("Good bye")
         exit()
-
 #No implementat
 def draw():
     print()
@@ -208,6 +209,7 @@ def lemmatize(entrada):
 estats = []
 npi_answers = []
 
+
 #A main hem de definir tots els estats on podem anar i carregar els valors inicials
 def main():
 #     try:
@@ -224,8 +226,18 @@ def main():
     estatAct = 0
     print (estats[estatAct].getFraseInicial())
     print ("Say something:")
+<<<<<<< HEAD
     thread = threading.Thread(target=mapa())
     thread.start()
+=======
+#     thread = threading.Thread(target=mapa)
+#     thread.start()
+#     if thread.isAlive():
+#         try:
+#             thread._Thread__stop()
+#         except:
+#             print(str(thread.getName()) + ' could not be terminated')
+>>>>>>> 960ef4bf89424a1c1627c824f1a350f1294d6204
     for line in sys.stdin:
            
         print("has esrit:", line)
@@ -241,7 +253,10 @@ def main():
         for word in lemma:
             l += word+" "
         l = l[:-1]
-            
+        
+        tagged2 = nltk.pos_tag(lemma)
+        print ("NLTK+LEMMA", tagged2)
+        
         resp, estatAct = resposta(l,estats[estatAct])
         if (resp == 0):
             print ("RESPOSTA: ",(generaRespostaNLTK(line)))
