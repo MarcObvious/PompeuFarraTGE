@@ -92,30 +92,23 @@ def generaRespostaNLTK(typedline):
             WRBi = i
         i += 1
     print(VB+NN+VBG+NNS)
+    NLTKanswer  = ""
     if len(tagged) < 7 and VB != "none" and NN != "none" and VBG == "none" and NNS == "none" and WRB == "none":
         NLTKanswer = "do you think that "+VB+"ing a "+NN+" is a good idea right now?"
-        return(NLTKanswer)
     elif len(tagged) < 7 and VB != "none" and NN == "none" and VBG == "none" and NNS != "none" and WRB == "none":
         NLTKanswer = "do you think that "+VB+"ing some "+NNS+" is a good idea right now?"
-        return(NLTKanswer)
     elif len(tagged) < 7 and VB == "none" and NN != "none" and VBG != "none" and NNS == "none" and WRB == "none":
         NLTKanswer = "why are you "+VBG+" a "+NN+"? I think you have more important things to do"
-        return(NLTKanswer)
     elif len(tagged) < 7 and VB == "none" and NN == "none" and VBG != "none" and NNS != "none" and WRB == "none":
         NLTKanswer = "why are you "+VBG+" some "+NNS+"? I think you have more important things to do"
-        return(NLTKanswer)
     elif len(tagged) < 7 and VB == "am" and NN == "none" and VBG != "none" and NNS != "none" and WRB == "none":
         NLTKanswer = "why are you "+VBG+" some "+NNS+"? I think you have more important things to do"
-        return(NLTKanswer)
     elif len(tagged) < 7 and VB == "am" and NN != "none" and VBG != "none" and NNS == "none" and WRB == "none":
         NLTKanswer = "why are you "+VBG+" a "+NN+"? I think you have more important things to do"
-        return(NLTKanswer)
     elif len(tagged) < 10 and (WRB == "where" or WRB == "Where") and tokens[len(tagged)-1] == "?" and tags[len(tagged)-2] == "NNS":
         NLTKanswer = "I don't know "+WRB.lower()+" you could find "+tokens[len(tagged)-2]+" over here"
-        return(NLTKanswer)
     elif len(tagged) < 10 and (WRB == "where" or WRB == "Where") and tokens[len(tagged)-1] == "?" and tags[len(tagged)-2] == "NN":
         NLTKanswer = "I don't know "+WRB.lower()+" you could find a "+tokens[len(tagged)-2]+" over here"
-        return(NLTKanswer)
     elif len(tagged) < 10 and (WRB == "when" or WRB == "When") and tokens[len(tagged)-1] == "?":
         j = 0
         whenanswer = ""
@@ -127,8 +120,9 @@ def generaRespostaNLTK(typedline):
             whenanswer = whenanswer+" "+tokens[j]
             j += 1
         NLTKanswer = "I don't know "+whenanswer[:-2]+", God knows"
-        return(NLTKanswer)
     
+    if (NLTKanswer != ""):
+        return NLTKanswer
     return(NPIanswer())
     
 #Carrega les respostes NPI
