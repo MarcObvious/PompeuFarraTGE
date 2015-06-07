@@ -2,3 +2,11 @@ hello|hello, how are you going?
 asshole|stop using bad language dude
 fuck you|hey, I'm trying to help you!
 motherfucker|I'm going to clean your mouth with soap
+who are you?|I am your conscience
+where am I?|don't you know what you did yesterday? you are at college
+I am tired|what a pitty, lie down and rest
+I'm tired|dunno man, search for a bed
+what happened yesterday?|you take too much beer
+what has happened?|you exceeded with alcohol dude
+what should I do?|you should get out of here and reconsider your life
+what shall I do?|you shall get out of here and reconsider your life
