@@ -70,11 +70,14 @@ class State():
 #             print (self.data.keys())
             if (paraula in self.data.keys()):
                 resposta, estat = self.data[paraula]
+                break
             else:
                 for key in self.data.keys():
                     print (key)
+                    print ("MERDAAA", self.data[key][0])
+                    keys = key.split()
                     if (paraula in key.split(" ")):
-                        resposta, estat = self.data[paraula]
+                        resposta, estat = self.data[key]
                         break
                     else:
                         try:
@@ -269,10 +272,7 @@ def main():
     estatAct = 0
     print (estats[estatAct].getFraseInicial())
     print ("Say something:")
-<<<<<<< HEAD
-    thread = threading.Thread(target=mapa())
-    thread.start()
-=======
+
 #     thread = threading.Thread(target=mapa)
 #     thread.start()
 #     if thread.isAlive():
@@ -280,7 +280,6 @@ def main():
 #             thread._Thread__stop()
 #         except:
 #             print(str(thread.getName()) + ' could not be terminated')
->>>>>>> 960ef4bf89424a1c1627c824f1a350f1294d6204
     for line in sys.stdin:
         line = line.lower()
         print("has escrit:", line)
