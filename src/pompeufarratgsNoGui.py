@@ -3,7 +3,6 @@ import nltk;
 #from nltk.corpus import treebank
 import sys;
 import random;
-import itertools
 from nltk.stem import *
 from nltk.stem.wordnet import WordNetLemmatizer
 from os import listdir
@@ -14,7 +13,7 @@ import pygame, eztext, threading
 
 #mides pantalla
 width = 800
-height = 500    
+height = 500
 
 
 #colors
@@ -42,7 +41,43 @@ def mapa():
         if estatAct == 0:
             screen.blit(tracker,(360,435))
         elif estatAct == 1:
-            screen.blit (tracker,(100,200))
+            screen.blit (tracker,(360,390))
+        elif estatAct == 2:
+            screen.blit (tracker,(320,435))
+        elif estatAct == 3:
+            screen.blit (tracker,(280,435))
+        elif estatAct == 4:
+            screen.blit (tracker,(220,170))
+        elif estatAct == 5:
+            screen.blit (tracker,(360,170))
+        elif estatAct == 6:
+            screen.blit (tracker,(360,300))
+        elif estatAct == 7:
+            screen.blit (tracker,(190,360))
+        elif estatAct == 8:
+            screen.blit (tracker,(140,260))
+        elif estatAct == 9:
+            screen.blit (tracker,(140,320))
+        elif estatAct == 10:
+            screen.blit (tracker,(140,380))
+        elif estatAct == 11:
+            screen.blit (tracker,(180,80))
+        elif estatAct == 12:
+            screen.blit (tracker,(160,205))
+        elif estatAct == 13:
+            screen.blit (tracker,(90,30))
+        elif estatAct == 14:
+            screen.blit (tracker,(550,250))
+        elif estatAct == 15:
+            screen.blit (tracker,(570,40))
+        elif estatAct == 16:
+            screen.blit (tracker,(630,40))
+        elif estatAct == 17:
+            screen.blit (tracker,(670,40))
+        elif estatAct == 18:
+            screen.blit (tracker,(690,150))
+        elif estatAct == 19:
+            screen.blit (tracker,(680,400))
         pygame.display.update()
 
 #def verificaEstat(estatAct):
@@ -109,7 +144,6 @@ def generaRespostaNLTK(typedline):
         separat = line.split('|')
         if typedline == separat[0]+"\n":
             return separat[1]
-        
     tokens = nltk.word_tokenize(typedline)
     tagged = nltk.pos_tag(tokens)
     i = 0
@@ -182,6 +216,7 @@ def sortida(tokens):
     if ('surtJA' in tokens): 
         print ("Good bye")
         exit()
+
 #No implementat
 def draw():
     print()
@@ -209,7 +244,6 @@ def lemmatize(entrada):
 estats = []
 npi_answers = []
 
-
 #A main hem de definir tots els estats on podem anar i carregar els valors inicials
 def main():
 #     try:
@@ -226,18 +260,8 @@ def main():
     estatAct = 0
     print (estats[estatAct].getFraseInicial())
     print ("Say something:")
-<<<<<<< HEAD
     thread = threading.Thread(target=mapa())
     thread.start()
-=======
-#     thread = threading.Thread(target=mapa)
-#     thread.start()
-#     if thread.isAlive():
-#         try:
-#             thread._Thread__stop()
-#         except:
-#             print(str(thread.getName()) + ' could not be terminated')
->>>>>>> 960ef4bf89424a1c1627c824f1a350f1294d6204
     for line in sys.stdin:
            
         print("has esrit:", line)
@@ -253,10 +277,7 @@ def main():
         for word in lemma:
             l += word+" "
         l = l[:-1]
-        
-        tagged2 = nltk.pos_tag(lemma)
-        print ("NLTK+LEMMA", tagged2)
-        
+            
         resp, estatAct = resposta(l,estats[estatAct])
         if (resp == 0):
             print ("RESPOSTA: ",(generaRespostaNLTK(line)))
