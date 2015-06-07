@@ -6,6 +6,32 @@ from nltk.stem import *
 from nltk.stem.wordnet import WordNetLemmatizer
 from os import listdir
 #import pyglet
+from pygame.locals import*
+import pygame, eztext, threading
+#img = pygame.image.load('clouds.bmp')
+
+#mides pantalla
+width = 800
+height = 500
+
+#colors
+blue = (64,64,255)
+
+def mapa():
+    #inicialitzacio de la pantalla, titol del joc i input de text
+    pygame.init()  # @UndefinedVariable
+    screen = pygame.display.set_mode((width,height))
+    pygame.display.set_caption('PompeuFarra: The Great Escape')
+    while 1:
+        events = pygame.event.get()
+        for event in events:
+            #aixi tanquem apretant la creu
+            if event.type == pygame.QUIT:  # @UndefinedVariable
+                pygame.quit()  # @UndefinedVariable
+                quit()
+        screen.fill(blue)
+        pygame.display.update()
+    
 
 class State():
     def __init__(self, posicio, frase, data):
@@ -183,32 +209,34 @@ def main():
     estatAct = 0
     print (estats[estatAct].getFraseInicial())
     print ("Say something:")
+    thread = threading.Thread(target=mapa)
+    thread.start()
     for line in sys.stdin:
-       
+           
         print("has esrit:", line)
         tokens = nltk.word_tokenize(line)
 
         tagged = nltk.pos_tag(tokens)
         print ("NLTK", tagged[0:len(tagged)])
         sortida(tokens)
-        
+            
         lemma = lemmatize(tokens)
         print ("LEMMA", lemma)
         l = ""
         for word in lemma:
             l += word+" "
         l = l[:-1]
-        
+            
         resp, estatAct = resposta(l,estats[estatAct])
         if (resp == 0):
             print ("RESPOSTA: ",(generaRespostaNLTK(line)))
         else:
             print ("RESPOSTA: ",resp)
         print ("ESTAT ACTUAL: " ,estatAct)
-#         resp, est = resposta(line,estats[1])
-        
+    #   resp, est = resposta(line,estats[1])
+            
         print (estats[int(estatAct)].getFraseInicial())
-        
+            
         print ("Say something:")
 
 if __name__ == "__main__":
