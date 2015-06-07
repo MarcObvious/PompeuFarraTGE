@@ -1,3 +1,4 @@
+
 import nltk;
 #from nltk.corpus import treebank
 import sys;
@@ -14,15 +15,19 @@ import pygame, eztext, threading
 width = 800
 height = 500
 
+
 #colors
 blue = (64,64,255)
 
 def mapa():
+    aux = 0
+    estatAct = 0
     #inicialitzacio de la pantalla, titol del joc i input de text
     pygame.init()  # @UndefinedVariable
     screen = pygame.display.set_mode((width,height))
     pygame.display.set_caption('PompeuFarra: The Great Escape')
     mapapic = pygame.image.load("../pics/mapa.png")
+    tracker = pygame.image.load("../pics/tracker.png")
     while 1:
         events = pygame.event.get()
         for event in events:
@@ -32,8 +37,16 @@ def mapa():
                 quit()
         screen.fill(blue)
         screen.blit(mapapic,(15,15))
+        #estatVerificat = verificaEstat(aux, estatAct)
+        if estatAct == 0:
+            screen.blit(tracker,(360,435))
+        elif estatAct == 1:
+            screen.blit (tracker,(100,200))
         pygame.display.update()
-    
+
+#def verificaEstat(estatAct):
+
+        #return 
 
 class State():
     def __init__(self, posicio, frase, data):
@@ -211,7 +224,7 @@ def main():
     estatAct = 0
     print (estats[estatAct].getFraseInicial())
     print ("Say something:")
-    thread = threading.Thread(target=mapa)
+    thread = threading.Thread(target=mapa())
     thread.start()
     for line in sys.stdin:
            
