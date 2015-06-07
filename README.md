@@ -12,6 +12,8 @@ Llibreries externes:
 
 http://www.nltk.org/
 
+------------------------------------------------------------------------------------------------------------
+
 Generació de respostes en funció de l'input:
 Primer mira si a l'arxiu txt de l'estat actual troba una resposta predeterminada per aquell input concret.
 Sinó, mira si troba una resposta predeterminada en l'arxiu extra.txt.
