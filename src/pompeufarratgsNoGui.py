@@ -117,8 +117,18 @@ def generaRespostaNLTK(typedline):
         NLTKanswer = "I don't know "+WRB.lower()+" you could find a "+tokens[len(tagged)-2]+" over here"
         return(NLTKanswer)
     elif len(tagged) < 10 and (WRB == "when" or WRB == "When") and tokens[len(tagged)-1] == "?":
-        NLTKanswer = "I don't know "+typedline.lower()[:-2]+", God knows"
+        j = 0
+        whenanswer = ""
+        while j < len(tagged):
+            if tokens[j] == "I" or tokens[j] == "i":
+                tokens[j] = "you"
+            elif tokens[j] == "you":
+                tokens[j] = "I"
+            whenanswer = whenanswer+" "+tokens[j]
+            j += 1
+        NLTKanswer = "I don't know "+whenanswer[:-2]+", God knows"
         return(NLTKanswer)
+    
     return(NPIanswer())
     
 #Carrega les respostes NPI
