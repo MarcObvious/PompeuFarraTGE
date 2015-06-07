@@ -1,6 +1,7 @@
 
 import nltk;
 #from nltk.corpus import treebank
+from nltk.corpus import wordnet as wn
 import sys;
 import random;
 from nltk.stem import *
@@ -94,23 +95,65 @@ class State():
         return repr((self.frase, self.posicio, self.data))
     
     def getResposta(self, entrada):
-        if entrada in self.data.keys():
+        print(entrada)
+        scores = []
+        resposta = ""
+        estat = 0
+        #Mirem de trobar resposta buscant les paraules directament
+        for paraula, tag in entrada:
+#             print (tag)
+#             print (self.data.keys())
+            if (paraula in self.data.keys()):
+                resposta, estat = self.data[paraula]
+            else:
+                for key in self.data.keys():
+                    print (key)
+                    if (paraula in key.split(" ")):
+                        resposta, estat = self.data[paraula]
+                        break
+                    else:
+                        try:
+                            for i in range(len(wn.synsets(paraula))):
+                                print (wn.synset(paraula+".v.0"+i))
+                                ++i
+                        except:
+                            print ("Oops!  That was no valid word.  Try again...")
+            
+#             if (paraula) in self.data.keys():
+#                 print ("SOMETHIIIIIIIIING")
+#                 resposta, estat = self.data[paraula]
+#             if (tag[0] == 'V'):
+#                 print ()
+#                 print (paraula, "es un verb i te",len(wn.synsets(paraula)), "sinonims")
+#                  for key in self.data.keys():
+#                      print (key)
+#                  i = 0
+#                  for (i < 5):
+#                      i += 1
+#                 
+#             if (tag[0] == 'N'):
+#                 print (paraula, "es un nom i te",len(wn.synsets(paraula)), "sinonims")
+
+#         if entrada in self.data.keys():
 #             print ("AHA", self.data[input])
-            return self.data[entrada]
-        return 0,0
+#             return self.data[entrada]
+        return resposta,estat
     
     def getFraseInicial(self):
         return self.frase
     
     def getNumEstat(self):
         return self.posicio
-        
+    
+    def getkeys(self):
+        return 0
 #Dona una resposta i estat seguent a partir d'una serie de tokens
 def resposta(tokens, estat):
-#     print("ara intentarem trobar resposta")
+    #     print("ara intentarem trobar resposta")
     #for token in tokens.split():
     resposta, estatSeguent = estat.getResposta(tokens)
-    
+    #     resposta = ""
+    #     estatSeguent = 0
     return resposta, estatSeguent
 
 #Carreguem tots els estats que hi hagi a la carpeta estat    
@@ -263,8 +306,8 @@ def main():
     thread = threading.Thread(target=mapa())
     thread.start()
     for line in sys.stdin:
-           
-        print("has esrit:", line)
+        line = line.lower()
+        print("has escrit:", line)
         tokens = nltk.word_tokenize(line)
 
         tagged = nltk.pos_tag(tokens)
@@ -277,8 +320,17 @@ def main():
         for word in lemma:
             l += word+" "
         l = l[:-1]
+<<<<<<< HEAD
             
         resp, estatAct = resposta(l,estats[estatAct])
+=======
+        
+        tagged2 = nltk.pos_tag(lemma)
+        print ("NLTK+LEMMA", tagged2)
+        if ('?') in line:
+            resp = generaRespostaNLTK(line)
+        resp, estatAct = resposta(tagged2,estats[estatAct])
+>>>>>>> 4c091e8658f5626c60fb37c62a2785e1c416e717
         if (resp == 0):
             print ("RESPOSTA: ",(generaRespostaNLTK(line)))
         else:
