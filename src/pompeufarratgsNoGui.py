@@ -22,6 +22,7 @@ def mapa():
     pygame.init()  # @UndefinedVariable
     screen = pygame.display.set_mode((width,height))
     pygame.display.set_caption('PompeuFarra: The Great Escape')
+    mapapic = pygame.image.load("../pics/mapa.png")
     while 1:
         events = pygame.event.get()
         for event in events:
@@ -30,6 +31,7 @@ def mapa():
                 pygame.quit()  # @UndefinedVariable
                 quit()
         screen.fill(blue)
+        screen.blit(mapapic,(15,15))
         pygame.display.update()
     
 
