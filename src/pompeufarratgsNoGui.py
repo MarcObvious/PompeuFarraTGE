@@ -235,7 +235,10 @@ def main():
         for word in lemma:
             l += word+" "
         l = l[:-1]
-            
+        
+        tagged2 = nltk.pos_tag(lemma)
+        print ("NLTK+LEMMA", tagged2)
+        
         resp, estatAct = resposta(l,estats[estatAct])
         if (resp == 0):
             print ("RESPOSTA: ",(generaRespostaNLTK(line)))
