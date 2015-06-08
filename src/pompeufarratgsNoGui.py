@@ -118,7 +118,7 @@ class State():
             keySp = key.split(" ")
 #             for paraula, tag in entrada:
 #             paraula=""
-           
+            errors = []
             if (len(keySp) == 3):
                 if (keySp[0] in entrada and keySp[1] in entrada and keySp[2] in entrada):
                     return self.data[key]
@@ -139,8 +139,7 @@ class State():
                                             valor = aux
                                             keyFinal = key
                         except:
-                        #print("")
-                            print("Alguna de les paraules no te sinonim")
+                            errors.append(keySp[0])
                     
             elif (len(keySp) == 1):
                 try:
@@ -154,8 +153,7 @@ class State():
                                     valor = aux
                                     keyFinal = key
                 except:
-                    #print("")
-                    print("Alguna de les paraules no te sinonim")
+                    errors.append(key)
             
              
             if key in entrada:
@@ -272,7 +270,7 @@ def generaRespostaNLTK(typedline):
         NLTKanswer = "I don't know "+whenanswer[:-2]+", God knows"
     
     if (NLTKanswer != ""):
-        return NLTKanswer+"\n I'm having fun talking with you, but you gotta give orders in order to get out of here."
+        return NLTKanswer+"\nI'm having fun talking with you, but you gotta give orders in order to get out of here."
     return NPIanswer()
     
 #Carrega les respostes NPI
@@ -336,60 +334,51 @@ thread = threading.Thread(target=mapa)
 
 #A main hem de definir tots els estats on podem anar i carregar els valors inicials
 def main():
-#     try:
-#         song = pyglet.media.load("../songs/GameMusic.mp3", streaming=False)
-#         song.play()
-#         pyglet.app.run()
-#     except pyglet.media.MediaException:
-#         print("fuck, notira")
-    
     carregaNPI()   
     carregaExtra()
     carregaEstats()
+    
     print (len(estats), "States loaded")
-
-    print ("POMPEUFARRA: THE GREAT ESCAPE")    
+    print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print ("POMPEUFARRA: THE GREAT ESCAPE") 
+    print ("-----------------------------------------------------------------------")   
+    
     estatAct = 0
     print ("STATUS:", estats[estatAct].getFraseInicial())
+    print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print ("Say something:")
+    
     escriu = open("aux","w")
     escriu.write(str(estatAct))
     escriu.close()
 
     thread.start()
-    
-#     if thread.isAlive():
-#         try:
-#             thread._Thread__stop()
-#         except:
-#             print(str(thread.getName()) + ' could not be terminated')
 
     for line in sys.stdin:
         line = line.lower()
-        print("Your words were:", line)
+        print("Your words were:", line[:-1])
         tokens = nltk.word_tokenize(line)
-
+        print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         tagged = nltk.pos_tag(tokens)
         print ("NLTK", tagged[0:len(tagged)])
         sortida(tokens)
             
         lemma = lemmatize(tokens)
         print ("LEMMA", lemma)
-        l = ""
-        for word in lemma:
-            l += word+" "
-        l = l[:-1]
 
         tagged2 = nltk.pos_tag(lemma)
+        resp = ""
         print ("NLTK+LEMMA", tagged2)
-        
-        resp, estatAct = resposta(lemma,estats[estatAct])
+        if '?' not in line:
+            resp, estatAct = resposta(lemma,estats[estatAct])
         if resp == "":
             resp = EXTRAanswer(line[:-1])
         
         if resp == "":
             resp = generaRespostaNLTK(line)
-            
+        
+        print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")    
+        
         print ("RESPOSTA: ",resp)
 
         print ("ESTAT ACTUAL: " ,estatAct)
@@ -397,8 +386,8 @@ def main():
         escriu = open("aux","w")
         escriu.write(str(estatAct))
         escriu.close()
-            
-        print ("STATUS:", estats[int(estatAct)].getFraseInicial())
+        
+        print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
             
         print ("Say something:")
 
