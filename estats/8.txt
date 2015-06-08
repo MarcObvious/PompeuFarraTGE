@@ -1,0 +1,12 @@
+There is someone here. Wait.. Kevin? Is this you? Oh man what are you doing here? -Kevin says: OOrggjlamn. - Okay, okay, he is not in a talking mood. He holds something at his hand. Maybe I could use something to wake him up.
+exit||||4
+go back||||4
+return corridor||||4
+go corridor||||4
+check room||There is nothing in this room but Kevin.||8
+explore room||There is nothing in this room but Kevin.||8
+use water||In what way? I don't think this kind of action is going to bring me anything.||8
+insult kevin||He is my friend, why on earth would I insult him.||8
+wake_up kevin||Ok, but how?||8
+wake_up kevin with water||Ok, lets do this. You will forgive me some day. [...] Kevin says: Heeeeeeeeeeeeey man stop this. WTF you want. OK, OK, just take this key and get the fuck out of here.||8
+talk kevin||Kevin does not want to talk. Or maybe would be more precise to say he is not able to talk. Kevin says: ZZZZZZZ.||8

@@ -1,0 +1,8 @@
+This is the library. It's full of books, computers... It's funny the fact that it is open, because it should not at this time. They always close it up on those kind of events. Well, let's focus. There are books, laptops out of energy and an empty desktop. The energy is out, doesn't seem like I'll be able to switch anything on here.
+go pati||||14
+check desktop||Nothing unusual here.||18
+explore desktop||Nothing unusual here.||18
+check book||Nothing important at these books. Wait, what the.. Back of a book I just found out my clothes. WHY THE HELL are they here. Well, I'll just dress up, FINALLY.||18
+explore book||Nothing important at these books. Wait, what the.. Back of a book I just found out my clothes. WHY THE HELL are they here. Well, I'll just dress up, FINALLY.||18
+check laptop||Nothing here.||18
+explore laptop||Nothing here.||18
