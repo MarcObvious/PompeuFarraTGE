@@ -62,7 +62,7 @@ def carregaEstats(estats, raw_estat):
     estats.append(s)
     
 def sortida(tokens):
-    if ('surtJA' in tokens): 
+    if ('get' and  'out' in tokens): 
         print ("Good bye")
         exit()
 
