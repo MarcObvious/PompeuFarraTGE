@@ -105,19 +105,12 @@ class State():
         return repr((self.frase, self.posicio, self.data))
     
     def getResposta(self, entrada):
-#         print(entrada)
-        scores = []
-        resposta = ""
-        estat = -1
-        #paraula, tag= entrada
         #print ("ENTRADA:",entrada)
         valor = 0
         keyFinal = ""
         for key in self.data.keys():
-            print (key.split(" "))  
+#             print (key.split(" "))  
             keySp = key.split(" ")
-#             for paraula, tag in entrada:
-#             paraula=""
             errors = []
             if (len(keySp) == 3):
                 if (keySp[0] in entrada and keySp[1] in entrada and keySp[2] in entrada):
@@ -173,13 +166,16 @@ class State():
     
     def getkeys(self):
         return 0
+    
+    def printKeys(self):
+        print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        for key in self.data.keys():
+            print (key)
+        print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            
 #Dona una resposta i estat seguent a partir d'una serie de tokens
 def resposta(tokens, estat):
-    #     print("ara intentarem trobar resposta")
-    #for token in tokens.split():
     resposta, estatSeguent = estat.getResposta(tokens)
-    #     resposta = ""
-    #     estatSeguent = 0
     if (estatSeguent == -1):
         print("HINT: best phrases start with \"I' want\"")
         return resposta, estat.getNumEstat()
@@ -299,7 +295,7 @@ def NPIanswer():
     return npi_answers[random.randint(1,len(npi_answers)-1)]
 
 def sortida(tokens):
-    if ('get' and  'out' in tokens): 
+    if "SURT" in  tokens: 
         print ("Good bye")
         exit()
 
@@ -339,13 +335,13 @@ def main():
     carregaEstats()
     
     print (len(estats), "States loaded")
-    print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print ("POMPEUFARRA: THE GREAT ESCAPE") 
-    print ("-----------------------------------------------------------------------")   
+    print ("---------------------------------------------------------------------------------")   
     
     estatAct = 0
     print ("STATUS:", estats[estatAct].getFraseInicial())
-    print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print ("Say something:")
     
     escriu = open("aux","w")
@@ -357,38 +353,45 @@ def main():
     for line in sys.stdin:
         line = line.lower()
         print("Your words were:", line[:-1])
-        tokens = nltk.word_tokenize(line)
-        print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        tagged = nltk.pos_tag(tokens)
-        print ("NLTK", tagged[0:len(tagged)])
-        sortida(tokens)
+        
+        if "pussy" in line[:-1] and ("i wanna" in line[:-1] or "show me" in line[:-1]) and "stats" in line[:-1]:
+            print ("KEYS DISPONIBLES")
+            estats[estatAct].printKeys()
             
-        lemma = lemmatize(tokens)
-        print ("LEMMA", lemma)
-
-        tagged2 = nltk.pos_tag(lemma)
-        resp = ""
-        print ("NLTK+LEMMA", tagged2)
-        if '?' not in line:
-            resp, estatAct = resposta(lemma,estats[estatAct])
-        if resp == "":
-            resp = EXTRAanswer(line[:-1])
-        
-        if resp == "":
-            resp = generaRespostaNLTK(line)
-        
-        print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")    
-        
-        print ("RESPOSTA: ",resp)
-
+        else:
+            tokens = nltk.word_tokenize(line)
+            print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            tagged = nltk.pos_tag(tokens)
+            print ("NLTK", tagged[0:len(tagged)])
+            sortida(tokens)
+                
+            lemma = lemmatize(tokens)
+            print ("LEMMA", lemma)
+    
+            tagged2 = nltk.pos_tag(lemma)
+            resp = ""
+            print ("NLTK+LEMMA", tagged2)
+            if '?' not in line:
+                resp, estatAct = resposta(lemma,estats[estatAct])
+            if resp == "":
+                resp = EXTRAanswer(line[:-1])
+            
+            if resp == "":
+                resp = generaRespostaNLTK(line)
+            
+            print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            
+            print ("RESPOSTA: ",resp)
+    
         print ("ESTAT ACTUAL: " ,estatAct)
         
         escriu = open("aux","w")
         escriu.write(str(estatAct))
         escriu.close()
         
-        print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-            
+        print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print ("STATUS:", estats[estatAct].getFraseInicial())
+        print ("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         print ("Say something:")
 
 if __name__ == "__main__":
