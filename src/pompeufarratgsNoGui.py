@@ -23,7 +23,7 @@ def mapa():
 #     aux = 0
     estatAct = 0
     clock = pygame.time.Clock()
-    FPS = 10
+    FPS = 5
     #inicialitzacio de la pantalla, titol del joc i input de text
     pygame.init()  # @UndefinedVariable
     screen = pygame.display.set_mode((width,height))
@@ -33,6 +33,14 @@ def mapa():
     while 1:
         clock.tick(FPS)
         events = pygame.event.get()
+        
+        
+        llegeix = open("aux","r")
+        for line in llegeix:
+            estatAct = int(line)
+        llegeix.close()
+        
+        
         for event in events:
             #aixi tanquem apretant la creu
             if event.type == pygame.QUIT:  # @UndefinedVariable
@@ -197,10 +205,10 @@ def carregaEstats():
             else:
                 separat = line.split('||')
                 diccionari[separat[0]] = (separat[1],int(separat[2][:-1]))
-    
+        estat1.close()    
         s = State(int(num_estat),frase_inicial,diccionari)
         estats.append(s)
-    
+   
     #Com que llegim directament de la carpeta, els estats s'han dordenar
     estats.sort(key=lambda State: State.posicio,reverse=False)
 
@@ -272,6 +280,7 @@ def carregaNPI():
     extra = open( "../RespostesEstandar/NPI","r")
     for line in extra:
         npi_answers.append(line[:-1])
+    extra.close()
         
 
 def carregaExtra():
@@ -279,6 +288,7 @@ def carregaExtra():
     for line in extra:
         separat = line.split('|')
         extra_answers[separat[0]] = separat[1][:-1]
+    extra.close()
 
 def EXTRAanswer(line):
     for key in extra_answers.keys():
@@ -332,7 +342,7 @@ def main():
 #         pyglet.app.run()
 #     except pyglet.media.MediaException:
 #         print("fuck, notira")
-
+    
     carregaNPI()   
     carregaExtra()
     carregaEstats()
@@ -342,10 +352,12 @@ def main():
     estatAct = 0
     print ("STATUS:", estats[estatAct].getFraseInicial())
     print ("Say something:")
-    
+    escriu = open("aux","w")
+    escriu.write(str(estatAct))
+    escriu.close()
 
-    
     thread.start()
+    
 #     if thread.isAlive():
 #         try:
 #             thread._Thread__stop()
@@ -381,6 +393,10 @@ def main():
         print ("RESPOSTA: ",resp)
 
         print ("ESTAT ACTUAL: " ,estatAct)
+        
+        escriu = open("aux","w")
+        escriu.write(str(estatAct))
+        escriu.close()
             
         print ("STATUS:", estats[int(estatAct)].getFraseInicial())
             
