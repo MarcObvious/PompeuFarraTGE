@@ -95,52 +95,51 @@ class State():
         return repr((self.frase, self.posicio, self.data))
     
     def getResposta(self, entrada):
-        print(entrada)
+#         print(entrada)
         scores = []
         resposta = ""
-        estat = 0
-        #Mirem de trobar resposta buscant les paraules directament
-        for paraula, tag in entrada:
-#             print (tag)
-#             print (self.data.keys())
-            if (paraula in self.data.keys()):
-                resposta, estat = self.data[paraula]
-                break
-            else:
-                for key in self.data.keys():
-                    print (key)
-                    print ("MERDAAA", self.data[key][0])
-                    keys = key.split()
-                    if (paraula in key.split(" ")):
-                        resposta, estat = self.data[key]
-                        break
-                    else:
-                        try:
-                            for i in range(len(wn.synsets(paraula))):
-                                print (wn.synset(paraula+".v.0"+i))
-                                ++i
-                        except:
-                            print ("Oops!  That was no valid word.  Try again...")
+        estat = -1
+        #paraula, tag= entrada
+        print ("ENTRADA:",entrada)
+        valor = 0
+        keyFinal = ""
+        for key in self.data.keys():
+            print (key.split(" "))  
+            keySp = key.split(" ")
+#             for paraula, tag in entrada:
+#             paraula=""
+            if key in entrada:
+                return self.data[key]
             
-#             if (paraula) in self.data.keys():
-#                 print ("SOMETHIIIIIIIIING")
-#                 resposta, estat = self.data[paraula]
-#             if (tag[0] == 'V'):
-#                 print ()
-#                 print (paraula, "es un verb i te",len(wn.synsets(paraula)), "sinonims")
-#                  for key in self.data.keys():
-#                      print (key)
-#                  i = 0
-#                  for (i < 5):
-#                      i += 1
-#                 
-#             if (tag[0] == 'N'):
-#                 print (paraula, "es un nom i te",len(wn.synsets(paraula)), "sinonims")
-
-#         if entrada in self.data.keys():
-#             print ("AHA", self.data[input])
-#             return self.data[entrada]
-        return resposta,estat
+            if (len(keySp) == 2):
+                if (keySp[0] in entrada and keySp[1] in entrada):
+                    return self.data[key]
+    
+            elif (len(keySp) == 3):
+                if (keySp[0] in entrada and keySp[1] in entrada and keySp[2] in entrada):
+                    return self.data[key]
+                    
+            elif (len(keySp) == 1):
+                try:
+                    for sinKey in wn.synsets(key):
+                        for paraula in entrada:
+    #                         print(paraula)
+                            for sinParaula in wn.synsets(paraula):
+                                #print("AQUI",sinParaula)
+                                aux = sinKey.path_similarity(sinParaula)
+                                if (aux > valor):
+                                    valor = aux
+                                    keyFinal = key
+                except:
+                    print("alguna cosa ha fallat")
+            
+            
+                
+        
+        print ("Key guanyadora:", keyFinal, valor)
+        if (valor >= 0.5):
+            return self.data[keyFinal]
+        return "",-1
     
     def getFraseInicial(self):
         return self.frase
@@ -157,12 +156,13 @@ def resposta(tokens, estat):
     resposta, estatSeguent = estat.getResposta(tokens)
     #     resposta = ""
     #     estatSeguent = 0
-    return resposta, estatSeguent
-
+    if (estatSeguent == -1):
+        return resposta, estat.getNumEstat()
+    return resposta,estatSeguent
 #Carreguem tots els estats que hi hagi a la carpeta estat    
 def carregaEstats():
     for fitxer in listdir("../estats/"): 
-        print("Llegint estat", fitxer)
+        #print("Loading state", fitxer)
         estat1 = open("../estats/"+fitxer, "r" ) 
         
         num_estat = int(fitxer[:-4])
@@ -301,10 +301,11 @@ def main():
 
     carregaNPI()   
     carregaEstats()
-    print ("#Estats",len(estats))
-    
+    print (len(estats), "States loaded")
+
+    print ("POMPEUFARRA: THE GREAT ESCAPE")    
     estatAct = 0
-    print (estats[estatAct].getFraseInicial())
+    print ("STATUS:", estats[estatAct].getFraseInicial())
     print ("Say something:")
     
 
@@ -318,7 +319,7 @@ def main():
 
     for line in sys.stdin:
         line = line.lower()
-        print("has escrit:", line)
+        print("Your words were:", line)
         tokens = nltk.word_tokenize(line)
 
         tagged = nltk.pos_tag(tokens)
@@ -336,7 +337,8 @@ def main():
         print ("NLTK+LEMMA", tagged2)
         if ('?') in line:
             resp = generaRespostaNLTK(line)
-        resp, estatAct = resposta(tagged2,estats[estatAct])
+            
+        resp, estatAct = resposta(lemma,estats[estatAct])
 
         if (resp == 0):
             print ("RESPOSTA: ",(generaRespostaNLTK(line)))
@@ -345,9 +347,9 @@ def main():
         print ("ESTAT ACTUAL: " ,estatAct)
     #   resp, est = resposta(line,estats[1])
             
-        print (estats[int(estatAct)].getFraseInicial())
+        print ("STATUS:", estats[int(estatAct)].getFraseInicial())
             
-        print ("Say something:")
+        print ("Say something: (best phrases start with \"I' want\")")
 
 if __name__ == "__main__":
     main()
