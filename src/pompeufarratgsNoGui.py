@@ -354,7 +354,7 @@ def main():
         line = line.lower()
         print("Your words were:", line[:-1])
         
-        if "pussy" in line[:-1] and ("i wanna" in line[:-1] or "show me" in line[:-1]) and "stats" in line[:-1]:
+        if "coward" in line[:-1] and ("i wanna" in line[:-1] or "show me" in line[:-1]) and "stats" in line[:-1]:
             print ("KEYS DISPONIBLES")
             estats[estatAct].printKeys()
             
