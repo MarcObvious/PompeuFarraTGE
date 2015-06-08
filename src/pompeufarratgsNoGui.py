@@ -20,8 +20,10 @@ height = 500
 black = (5,5,5)
 
 def mapa():
-    aux = 0
+#     aux = 0
     estatAct = 0
+    clock = pygame.time.Clock()
+    FPS = 10
     #inicialitzacio de la pantalla, titol del joc i input de text
     pygame.init()  # @UndefinedVariable
     screen = pygame.display.set_mode((width,height))
@@ -29,6 +31,7 @@ def mapa():
     mapapic = pygame.image.load("../pics/mapa.png")
     tracker = pygame.image.load("../pics/tracker.png")
     while 1:
+        clock.tick(FPS)
         events = pygame.event.get()
         for event in events:
             #aixi tanquem apretant la creu
@@ -319,6 +322,7 @@ def lemmatize(entrada):
 estats = []
 extra_answers = {}
 npi_answers = []
+thread = threading.Thread(target=mapa)
 
 #A main hem de definir tots els estats on podem anar i carregar els valors inicials
 def main():
@@ -340,7 +344,7 @@ def main():
     print ("Say something:")
     
 
-    thread = threading.Thread(target=mapa)
+    
     thread.start()
 #     if thread.isAlive():
 #         try:
@@ -377,7 +381,7 @@ def main():
         print ("RESPOSTA: ",resp)
 
         print ("ESTAT ACTUAL: " ,estatAct)
-             
+            
         print ("STATUS:", estats[int(estatAct)].getFraseInicial())
             
         print ("Say something:")
