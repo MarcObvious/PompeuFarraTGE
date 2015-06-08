@@ -18,7 +18,7 @@ height = 500
 
 
 #colors
-blue = (64,64,255)
+black = (5,5,5)
 
 def mapa():
     aux = 0
@@ -36,7 +36,7 @@ def mapa():
             if event.type == pygame.QUIT:  # @UndefinedVariable
                 pygame.quit()  # @UndefinedVariable
                 quit()
-        screen.fill(blue)
+        screen.fill(black)
         screen.blit(mapapic,(15,15))
         #estatVerificat = verificaEstat(aux, estatAct)
         if estatAct == 0:
@@ -100,7 +100,7 @@ class State():
         resposta = ""
         estat = -1
         #paraula, tag= entrada
-        print ("ENTRADA:",entrada)
+        #print ("ENTRADA:",entrada)
         valor = 0
         keyFinal = ""
         for key in self.data.keys():
@@ -109,7 +109,6 @@ class State():
 #             for paraula, tag in entrada:
 #             paraula=""
            
-            
             if (len(keySp) == 3):
                 if (keySp[0] in entrada and keySp[1] in entrada and keySp[2] in entrada):
                     return self.data[key]
@@ -130,6 +129,7 @@ class State():
                                     valor = aux
                                     keyFinal = key
                 except:
+                    #print("")
                     print("alguna cosa ha fallat")
             
              
@@ -311,8 +311,8 @@ def main():
     print ("Say something:")
     
 
-#     thread = threading.Thread(target=mapa)
-#     thread.start()
+#    thread = threading.Thread(target=mapa)
+#    thread.start()
 #     if thread.isAlive():
 #         try:
 #             thread._Thread__stop()
@@ -339,8 +339,8 @@ def main():
         print ("NLTK+LEMMA", tagged2)
         if ('?') in line:
             resp = generaRespostaNLTK(line)
-            
-        resp, estatAct = resposta(lemma,estats[estatAct])
+        else:
+            resp, estatAct = resposta(lemma,estats[estatAct])
 
         if (resp == 0):
             print ("RESPOSTA: ",(generaRespostaNLTK(line)))
