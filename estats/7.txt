@@ -1,6 +1,6 @@
 This is the music room. It feels a bit creepy to be here with this eerie silence, considering how loudy it usually is...There is a big piano, some student desks.. Nothing unusual.
 exit||||4
-go back||||4
+go_back||||4
 return corridor||||4
 go corridor||||4
 play piano||Omg I am pretty bad. I wouldn't get surprised if suddenly Orpheus appears from behind and stabs my bowels out.||7

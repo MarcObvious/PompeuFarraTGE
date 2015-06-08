@@ -16,7 +16,6 @@ import pygame, eztext, threading
 width = 800
 height = 500
 
-
 #colors
 black = (5,5,5)
 
@@ -113,9 +112,24 @@ class State():
                 if (keySp[0] in entrada and keySp[1] in entrada and keySp[2] in entrada):
                     return self.data[key]
             
-            elif (len(keySp) == 2):
-                if (keySp[0] in entrada and keySp[1] in entrada):
+            elif len(keySp) == 2:
+                if keySp[0] in entrada and keySp[1] in entrada:
                     return self.data[key]
+                else:
+                    if keySp[1] in entrada:
+                        try:
+                            for sinKey in wn.synsets(keySp[0]):
+                                for paraula in entrada:
+            #                         print(paraula)
+                                    for sinParaula in wn.synsets(paraula):
+                                        #print("AQUI",sinParaula)
+                                        aux = sinKey.path_similarity(sinParaula)
+                                        if (aux > valor):
+                                            valor = aux
+                                            keyFinal = key
+                        except:
+                        #print("")
+                            print("Alguna de les paraules no te sinonim")
                     
             elif (len(keySp) == 1):
                 try:
@@ -130,7 +144,7 @@ class State():
                                     keyFinal = key
                 except:
                     #print("")
-                    print("alguna cosa ha fallat")
+                    print("Alguna de les paraules no te sinonim")
             
              
             if key in entrada:
@@ -161,6 +175,7 @@ def resposta(tokens, estat):
         print("HINT: best phrases start with \"I' want\"")
         return resposta, estat.getNumEstat()
     return resposta,estatSeguent
+
 #Carreguem tots els estats que hi hagi a la carpeta estat    
 def carregaEstats():
     for fitxer in listdir("../estats/"): 
@@ -187,11 +202,6 @@ def carregaEstats():
     estats.sort(key=lambda State: State.posicio,reverse=False)
 
 def generaRespostaNLTK(typedline):
-    extra = open( "../extra/extra.txt","r")
-    for line in extra:
-        separat = line.split('|')
-        if typedline == separat[0]+"\n":
-            return separat[1]
     tokens = nltk.word_tokenize(typedline)
     tagged = nltk.pos_tag(tokens)
     i = 0
@@ -216,7 +226,7 @@ def generaRespostaNLTK(typedline):
             WRB = tagged[i][0]
             WRBi = i
         i += 1
-    print(VB+NN+VBG+NNS)
+#     print(VB+NN+VBG+NNS)
     NLTKanswer  = ""
     if len(tagged) < 7 and VB != "none" and NN != "none" and VBG == "none" and NNS == "none" and WRB == "none":
         NLTKanswer = "do you think that "+VB+"ing a "+NN+" is a good idea right now?"
@@ -242,6 +252,10 @@ def generaRespostaNLTK(typedline):
                 tokens[j] = "you"
             elif tokens[j] == "you":
                 tokens[j] = "I"
+            if tokens[j] == "my":
+                tokens[j] = "your"
+            elif tokens[j] == "your":
+                tokens[j] = "my"
             whenanswer = whenanswer+" "+tokens[j].lower()
             j += 1
         NLTKanswer = "I don't know "+whenanswer[:-2]+", God knows"
@@ -255,6 +269,19 @@ def carregaNPI():
     extra = open( "../RespostesEstandar/NPI","r")
     for line in extra:
         npi_answers.append(line[:-1])
+        
+
+def carregaExtra():
+    extra = open( "../extra/extra.txt","r")
+    for line in extra:
+        separat = line.split('|')
+        extra_answers[separat[0]] = separat[1][:-1]
+
+def EXTRAanswer(line):
+    for key in extra_answers.keys():
+        if key == line:
+            return extra_answers[key] 
+    return ""
 
 #Torna una resposta random NPI
 def NPIanswer():
@@ -290,6 +317,7 @@ def lemmatize(entrada):
 
 #VAriables globals
 estats = []
+extra_answers = {}
 npi_answers = []
 
 #A main hem de definir tots els estats on podem anar i carregar els valors inicials
@@ -302,6 +330,7 @@ def main():
 #         print("fuck, notira")
 
     carregaNPI()   
+    carregaExtra()
     carregaEstats()
     print (len(estats), "States loaded")
 
@@ -311,8 +340,8 @@ def main():
     print ("Say something:")
     
 
-#    thread = threading.Thread(target=mapa)
-#    thread.start()
+    thread = threading.Thread(target=mapa)
+    thread.start()
 #     if thread.isAlive():
 #         try:
 #             thread._Thread__stop()
@@ -337,18 +366,18 @@ def main():
 
         tagged2 = nltk.pos_tag(lemma)
         print ("NLTK+LEMMA", tagged2)
-        if ('?') in line:
+        
+        resp, estatAct = resposta(lemma,estats[estatAct])
+        if resp == "":
+            resp = EXTRAanswer(line[:-1])
+        
+        if resp == "":
             resp = generaRespostaNLTK(line)
-        else:
-            resp, estatAct = resposta(lemma,estats[estatAct])
-
-        if (resp == 0):
-            print ("RESPOSTA: ",(generaRespostaNLTK(line)))
-        else:
-            print ("RESPOSTA: ",resp)
-        print ("ESTAT ACTUAL: " ,estatAct)
-    #   resp, est = resposta(line,estats[1])
             
+        print ("RESPOSTA: ",resp)
+
+        print ("ESTAT ACTUAL: " ,estatAct)
+             
         print ("STATUS:", estats[int(estatAct)].getFraseInicial())
             
         print ("Say something:")
