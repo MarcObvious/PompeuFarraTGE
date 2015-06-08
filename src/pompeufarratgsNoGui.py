@@ -108,15 +108,14 @@ class State():
             keySp = key.split(" ")
 #             for paraula, tag in entrada:
 #             paraula=""
-            if key in entrada:
-                return self.data[key]
+           
             
-            if (len(keySp) == 2):
-                if (keySp[0] in entrada and keySp[1] in entrada):
-                    return self.data[key]
-    
-            elif (len(keySp) == 3):
+            if (len(keySp) == 3):
                 if (keySp[0] in entrada and keySp[1] in entrada and keySp[2] in entrada):
+                    return self.data[key]
+            
+            elif (len(keySp) == 2):
+                if (keySp[0] in entrada and keySp[1] in entrada):
                     return self.data[key]
                     
             elif (len(keySp) == 1):
@@ -133,7 +132,9 @@ class State():
                 except:
                     print("alguna cosa ha fallat")
             
-            
+             
+            if key in entrada:
+                return self.data[key]
                 
         
         print ("Key guanyadora:", keyFinal, valor)
@@ -157,6 +158,7 @@ def resposta(tokens, estat):
     #     resposta = ""
     #     estatSeguent = 0
     if (estatSeguent == -1):
+        print("HINT: best phrases start with \"I' want\"")
         return resposta, estat.getNumEstat()
     return resposta,estatSeguent
 #Carreguem tots els estats que hi hagi a la carpeta estat    
@@ -349,7 +351,7 @@ def main():
             
         print ("STATUS:", estats[int(estatAct)].getFraseInicial())
             
-        print ("Say something: (best phrases start with \"I' want\")")
+        print ("Say something:")
 
 if __name__ == "__main__":
     main()
