@@ -4,3 +4,6 @@ check bar||Nothing more than what I said. It's plenty of bottles scattered on th
 explore bar||I do not want to explore with those people around here.||19
 talk people||Better not.||19
 check people||They are alive. I guess. I do not know them.||19
+go pati||going pati||14
+go_back||going back||14
+return pati||returning pati||14
