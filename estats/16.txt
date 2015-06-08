@@ -1,7 +1,7 @@
 This is a simple access. Nothing unusual, except those beer cans at the floor and this security box with a number codification as security password.
-go salaordinadors1||||15
+go salaordinadors1||Going salaordinadors1||15
 go salaordinadors2||The lock is broken.||16
-go pati||||14
+go pati||Going pati||14
 drink beer||I've had enough beer 'til tomorrow, at least.||16
 check beer||Nothing special here.||16
 explore beer||What do you expect me to find on a beer can?.. You're even more drunk than I were. Wow.||16

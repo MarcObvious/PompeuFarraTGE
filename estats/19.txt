@@ -1,0 +1,6 @@
+The bar is completely out of service. Plenty of bottles scattered on the floor, and I can see some drunk people sleeping there. It will be better not to bother them. Oh, there is a Vodka bottle right here. I am feeling a bit thirsty...
+drink vodka||Gluglugluglu.. MMM this taste.. I will drink a bit more..mmmmm.. [...] pof. [...] - You lost the consciousness.-||0
+check bar||Nothing more than what I said. It's plenty of bottles scattered on the floor, and I can see some drunk people sleeping there. It will be better not to bother them. I can see too a vodka bottle over here. I feel thirsty.||19
+explore bar||I do not want to explore with those people around here.||19
+talk people||Better not.||19
+check people||They are alive. I guess. I do not know them.||19

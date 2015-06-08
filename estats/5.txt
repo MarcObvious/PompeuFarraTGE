@@ -1,8 +1,8 @@
 This class was not opened during last night. Everything is clean and ordered. Perhaps at the professor's desktop I will find the entrance key.
-exit||||4
-go_back||||4
-return corridor||||4
-go corridor||||4
+exit||Going back||4
+go_back||Going back||4
+return corridor||Returning corridor||4
+go corridor||Going corridor||4
 open desktop||So many USB, pens and stuff... Also a key! But not of the Entrance, it is from Secretary. It's something.||5 
 search desktop||School stuff... Flash memories and some devices. Lots of pens and sheets. Wait... there is a key under the sheets! It says "Secretary".||5 
 look desktop||Lots of papers, pens, USB... Hmmm an small key too, from Secretary. Let's go there.||5 

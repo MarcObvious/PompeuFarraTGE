@@ -1,8 +1,8 @@
 There is someone here. Wait.. Kevin? Is this you? Oh man what are you doing here? -Kevin says: OOrggjlamn. - Okay, okay, he is not in a talking mood. He holds something at his hand. Maybe I could use something to wake him up.
-exit||||4
-go back||||4
-return corridor||||4
-go corridor||||4
+exit||Going back||4
+go_back||Going back||4
+return corridor||Returning corridor||4
+go corridor||Going corridor||4
 check room||There is nothing in this room but Kevin.||8
 explore room||There is nothing in this room but Kevin.||8
 use water||In what way? I don't think this kind of action is going to bring me anything.||8

@@ -1,10 +1,10 @@
 Okay, Light has just come. What the.. This is a bathroom. Furthermore, this is University Pompeu Fabra! WTF. The walls are covered by some posters...
 open door||There are four doors, you should be far more precise. No offense.||1
 open right door||Why do you want to go back to the bathroom? It smells really bad!It is because of the bra? ... This is creepy.||1
-open right door||Do not go back there, move all around! Explore!||1
-open left door||it works! you get through||3
+open right wc||Do not go back there, move all around! Explore!||1
+open left wc||it works! you get through||3
 open door|| What door? there are many.||1
-open center door||The lock is broken. This sentence sounds familiar to me..||1
+open center wc||The lock is broken. This sentence sounds familiar to me..||1
 open exit door||it works! you get through||4 
 exit bathroom||getting out||4
 explore||explore what man, you are so laconic.||1

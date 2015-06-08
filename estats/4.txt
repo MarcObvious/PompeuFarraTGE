@@ -1,13 +1,13 @@
 What a big corridor there are so many rooms here.
-go bathroom||||1
-go aula1||a||5
+go bathroom||Going bathroom||1
+go aula1||Going to aula1||5
 go aula2||The lock is broken.||4
-go aula3||a||7
-go aula4||a||8
+go aula3||Going to aula3||7
+go aula4||Going to aula4||8
 go aula5||The lock is broken||4
-go aula6||a||10
-go entrance||||11
+go aula6||Going to aula6||10
+go entrance||Going entrance||11
 go elevator||The elevator does not open. Seems like it needs a key to be opened.I don't have the right key.||4
 search||there is a lot of trash over here.||4
 switch_on light||It is already on.||4
-explore||It seems there is not anything interesting. Should investigate all that rooms.||4
+explore||It seems there is not anything interesting here. You may check the other rooms.||4

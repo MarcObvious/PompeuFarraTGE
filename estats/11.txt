@@ -1,7 +1,8 @@
 I am at the entrance!! Which also is the exit, only if it were opened.. Which is not. I am a poor man.
-exit||||4
-go back||||4
-return corridor||||4
-go corridor||||4
-go secretaria||The lock is broken, it can not be opened.||11
-go playground||||14
+exit||Going back||4
+go_back||Going back||4
+return corridor||Returning corridor||4
+go corridor||Going corridor||4
+go secretaria||Okay, there I go...||13
+go pati||Going pati||14
+leave university||Finally, I made it. Fuck yeah!! THE END||11

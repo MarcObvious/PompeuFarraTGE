@@ -1,8 +1,8 @@
 I am at the playground. Wow this is hell. Everything scattered on the floor, a little scenario completely devastated.. I want to fly from here ASAP.
-go entrance||||11
-go acces||||15
-go biblioteca||||18
-go bar||The lock is broken.||14
+go entrance||Going entrance||11
+go acces||Going acces||15
+go biblioteca||Going biblioteca||18
+go bar||Going bar||19
 check fridge||There is a bottle of water. I will grab it on. Just in case.||10
 explore fridge||There is a bottle of water. I will grab it on. Just in case.||10
 open fridge||There is a bottle of water. I will grab it on. Just in case.||10
