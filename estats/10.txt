@@ -1,0 +1,8 @@
+There is a fridge here.
+exit||||4
+go back||||4
+return corridor||||4
+go corridor||||4
+check fridge||There is a bottle of water. I will grab it on. Just in case.||10
+explore fridge||There is a bottle of water. I will grab it on. Just in case.||10
+open fridge||There is a bottle of water. I will grab it on. Just in case.||10

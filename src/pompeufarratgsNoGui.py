@@ -175,7 +175,7 @@ def carregaEstats():
                 frase_inicial = line[:-1]
                 primer = False
             else:
-                separat = line.split('|')
+                separat = line.split('||')
                 diccionari[separat[0]] = (separat[1],int(separat[2][:-1]))
     
         s = State(int(num_estat),frase_inicial,diccionari)

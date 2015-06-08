@@ -1,0 +1,10 @@
+Oh my gosh.. This is the computer room. It is full of trash, food, even a used condom.. Those computer engineers are pretty wild. The main computer, the one from the teacher, is on O.o
+go access||||16
+eat food||Are you kidding me..?||7
+check condom||Do I look like a fucking scientist? I won't analize that.||7
+explore condom||Do I look like a fucking scientist? I won't analize that.||7
+check computer||There is a number at the screen. It says 0806.||7
+explore computer||I don't know how to explore that...I'm not in the mood of opening it.||7
+use computer||There is a number at the screen. It says 0806. It is frozen, not in a working state..||7
+hack computer||You should stop watching spy films.||7
+switch_off computer||Are you sure? This number of the screen seems important in some way.||7

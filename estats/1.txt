@@ -1,15 +1,13 @@
 Okay, Light has just come. What the.. This is a bathroom. Furthermore, this is University Pompeu Fabra! WTF. The walls are covered by some posters...
-open door|There are four doors, you should be far more precise. No offense.|1
-open right door|Why do you want to go back to the bathroom? It smells really bad!It is because of the bra? ... This is creepy.|1
-open right door|Do not go back there, move all around! Explore!|1
-open left door|it works! you get through|3
-open door| What door? there are many.|1
-open center door|The lock is broken. This sentence sounds familiar to me..|1
-open exit door|it works! you get through|4 
-exit bathroom|getting out|4
-explore|explore what man, you are so laconic.|1
-check walls|This awful colours look rudimentary, I am having a rough time to read those titles.. I think it says party Pompeu Farra. OH, THAT IS IT. I ATTEND IT. And I would say I had loooots of fun...|1
-check posters|This awful colours look rudimentary, I am having a rough time to read those titles.. I think it says party Pompeu Farra. OH, THAT IS IT. I ATTEND IT. And I would say I had loooots of fun...|1
-You are an idiot|FYI, I am not at my best state so you should not get hard on me.|1
-You are an idiot|Fuck you|1
-You are an idiot|YOU are an idiot.|1
+open door||There are four doors, you should be far more precise. No offense.||1
+open right door||Why do you want to go back to the bathroom? It smells really bad!It is because of the bra? ... This is creepy.||1
+open right door||Do not go back there, move all around! Explore!||1
+open left door||it works! you get through||3
+open door|| What door? there are many.||1
+open center door||The lock is broken. This sentence sounds familiar to me..||1
+open exit door||it works! you get through||4 
+exit bathroom||getting out||4
+explore||explore what man, you are so laconic.||1
+check walls||This awful colours look rudimentary, I am having a rough time to read those titles.. I think it says party Pompeu Farra. OH, THAT IS IT. I ATTEND IT. And I would say I had loooots of fun...||1
+check posters||This awful colours look rudimentary, I am having a rough time to read those titles.. I think it says party Pompeu Farra. OH, THAT IS IT. I ATTEND IT. And I would say I had loooots of fun...||1
+you idiot||FYI, I am not at my best state so you should not get hard on me.||1
